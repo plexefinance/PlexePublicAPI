@@ -30,9 +30,23 @@ https://github.com/Azure/autorest
 
 ## Webhooks
 
+We provide a number of webhooks as notification for the following events
+
+| Webhook     | Description |
+| ----------- | ----------- |
+| Customer Created for Partner      | This is notification that a new customer has been created only for registered partners        |
+| Application Created for Partner      | This is notification that a new application has been created only for registered partners        |
+| Customer and Application Created for Partner      | This is notification that a new customer and application has been created only for registered partners        |
+| Application Processed      | This is notification that a new application has been processed for a partner        |
+| Application Status Changed     | This is notification that an application's status has changed only for registered partners        |
+| Application Approval Status Changed     | This is notification that an application's approval status has changed only for registered partners        |
+| Loan Created     | This is notification that an application has been converted into a loan        |
+| Loan Withdrawal Completed     | This is notification that withdrawal has completed      |
+| New Message Posted     | This is notification that a new message has been posted for an customer, application or loan        |
+
 ## Getting Help
 
-If you need help using thre API, please contact as at team@plexe.co
+If you need help using the API, please contact as at team@plexe.co
 
 If you have found a bug or would like new features added, either add an open issue or again contact us at team@plexe.co
 
