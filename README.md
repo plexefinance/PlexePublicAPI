@@ -14,6 +14,10 @@ To create an account, please contact us at team@plexe.co
 
 One of the fastest ways to connect to our API is to use proxy generators. 
 
+Plexe recommends using Autorest
+
+https://github.com/Azure/autorest
+
 ## Authenication
 
 ## Create A Customer
