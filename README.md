@@ -8,11 +8,11 @@ To inspect the Swagger Document go to
 
 https://apidemo.plexe.co/swagger/index.html
 
-To create an account, please contact us at team@plexe.co
+To create an account, please contact us at admin@plexe.co
 
 ## Proxy
 
-One of the fastest ways to connect to our API is to use a proxy generators. 
+One of the fastest ways to connect to our API is to use a proxy generator. 
 
 Review Autorest as one such tool
 
@@ -23,7 +23,7 @@ The swagger json can be found at
 
 https://apidemo.plexe.co/swagger/v1/swagger.json
 
-## Authenication
+## Authentication
 
 There are two types of users, Customer and Partner. 
 
@@ -31,7 +31,7 @@ A Customer is the primary applicant on an Application. The scope of their functi
 
 A Partner is a user that is assigned to an Application. They have some visibility over the Application details, but mostly to monitor the status of an Application as it progresses throught the application process.
 
-To use the Authenication api, you will be required to login, supplying a username and password. This will return a Bearer token.
+To use the Authentication api, you will be required to login, supplying a username and password. This will return a Bearer token.
 
     {
 		"firstName": "string",
@@ -400,7 +400,7 @@ We provide a number of webhooks as notification for the following events
 
 ## Getting Help
 
-If you need help using the API, please contact as at team@plexe.co
+If you need help using the API, please contact as at admin@plexe.co
 
-If you have found a bug or would like new features added, either add an open issue or again contact us at team@plexe.co
+If you have found a bug or would like new features added, either add an open issue or again contact us at admin@plexe.co
 
