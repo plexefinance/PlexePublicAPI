@@ -4,13 +4,13 @@
 
 Plexe provides a simple HTTP-based API for creating applications and managing their line of credit products.
 
-To inspect the Swagger Document go to
+To inspect the Swagger Document, go to
 
 https://apidemo.plexe.co/swagger/index.html
 
 To create an account, please contact us at admin@plexe.co
 
-## Proxy
+## Proxy 
 
 One of the fastest ways to connect to our API is to use a proxy generator. 
 
@@ -25,11 +25,11 @@ https://apidemo.plexe.co/swagger/v1/swagger.json
 
 ## Authentication
 
-There are two types of users, Customer and Partner. 
+There are two types of users, customer and partner. 
 
-A Customer is the primary applicant on an Application. The scope of their functionaility is mostly for the managment of the application and loan.
+A customer is the primary applicant on an application. The scope of their functionality is mostly for the management of the application and loan.
 
-A Partner is a user that is assigned to an Application. They have some visibility over the Application details, but mostly to monitor the status of an Application as it progresses throught the application process.
+A partner is a user that is assigned to an application. They have some visibility over the Application details, but mostly to monitor the status of an application as it progresses throughout the application process.
 
 To use the Authentication api, you will be required to login, supplying a username and password. This will return a Bearer token.
 
@@ -56,7 +56,7 @@ Tokens last 60 mintues.
 
 ## Create A Customer
 
-Before you can create an Application, you need to create a Customer.
+Before you can create an application, you need to create a customer.
 
 This API call does not require authentication.
 
@@ -78,7 +78,7 @@ To create an Appplication you will need to call the Create Application API, and 
 
 
 	{
-		"partnerId": "string", (optional Guid id of the Partner)
+		"partnerId": "string", (optional Guid id of the partner)
 		"customerId": "string", (Guid of customer id)
 		"yearsInBusiness": 0, (years in business)
 		"industry": "string" (list can be collected from the lookup api)
@@ -121,7 +121,7 @@ If an application is ready or for an existing loan, you can call the Calculation
 
 ### Invoice
 
-The invoice calculation API requries the Application Id and the amount to withdrawal.
+The invoice calculation API requires the Application Id and the amount to withdrawal.
 
 The results from this call will be
 
@@ -140,7 +140,7 @@ The results from this call will be
 
 ### Line of Credit
 
-The line of credit calcuation first requires the calculation slider API to be called. 
+The line of credit calculation first requires the calculation slider API to be called. 
 
 This enables the options for the percentage of income repayment to be used.
 
@@ -184,7 +184,7 @@ The result will be
 
 ## Application Approval
 
-When an Application is ready to be completed, it requires a number data collection steps
+When an application is ready to be completed, it requires a number data collection steps
 
 1. Add Organisation Details
 2. Add Primary Applicant Details
@@ -193,7 +193,7 @@ When an Application is ready to be completed, it requires a number data collecti
 5. Sign Contract
 6. Supplied Required Documents
 
-Only when this is done will the Applicaiotn be submitted for review and approval.
+Only when this is done will the application be submitted for review and approval.
 
 ### Add Organisation Details
 
@@ -224,7 +224,7 @@ To add the Primary Applicant, you will need to submit both Driver License and SS
 		}
 	}
 
-A Primary Applicant is required for an Application to be completed.
+A Primary Applicant is required for an application to be completed.
 
 ### Add Secondary Applicant Details (not required)
 
@@ -242,11 +242,11 @@ To add the Secondary Applicant, you will need to submit both Driver License and 
 		}
 	}
 
-A sSecondary Applicant is not required for an Application.
+A Secondary Applicant is not required for an Application.
 
 ### Set Primary Bank Account
 
-To select a Primary Bank account, you will need to first access the list of current Bank Accounts assigned to the Customer.
+To select a Primary Bank account, you will need to first access the list of current Bank Accounts assigned to the customer.
 
 	/api/ApplicationApproval/get-all-banks/{applicationId}
 
@@ -260,7 +260,7 @@ To select a Primary Account, you will need to pass in the Application Id and the
 
 ### Sign Contract
 
-To sign the contract you must display the contract details for the Customer to review.
+To sign the contract, you must display the contract details for the customer to review.
 
 	/api/ApplicationApproval/get-contract/{applicationId}
 	
@@ -286,7 +286,7 @@ This will return
 	  "platformAgreementSignCondition2": "string"  (Text for second signature)
 	}
 
-You will then collect the electronic signature from the Customer for condition 1 and 2 and called the 
+You will then collect the electronic signature from the customer for condition 1 and 2 and called the 
 
 		/api/ApplicationApproval/sign-contract/{applicationId}
 
@@ -295,7 +295,7 @@ Passing in the jpg of the signatures as a byte array.
 
 ### Supplied Required Documents
 
-The final step is to review what documents need to be collected. You do this by calling the api
+The final step is to review what documents need to be collected. You do this by calling the API
 
 	/api/ApplicationApproval/get-required-documents/{applicationId}
 	
@@ -313,18 +313,18 @@ This final action will trigger the processing of the Application.
 
 Once an application has been converted into a Loan, the customer can do the following
 
-- Access their Loan, based on the Customer Id
+- Access their Loan, based on the customer Id
 - Get Information about their Loan, like Transactions, Withdrawals, Contracts, etc
 - Make a withdrawal
 
 
 ### Access Loan
 
-A Customer migth have many Loans, so to access the Loans associated with a Customer, you call
+A customer might have many Loans, so to access the Loans associated with a customer, you call
 
 	/api/Loan/get-customer-loans/{customerId}
 	
-This will return a list of Loans for this Customer.
+This will return a list of Loans for this customer.
 
 Using that Id, you can now access the other data for that Loan.
 
@@ -343,13 +343,13 @@ You can access the following information from the system about your Loan.
 
 ### Make a Withdrawal
 
-To make a withdrawal, you will need to use the Calcuation API to to get details of the withdrawal.
+To make a withdrawal, you will need to use the Calculation API to get details of the withdrawal.
 
-Once that is commpete, call the API
+Once that is complete, call the API
 
 	/api/Loan/make-withdrawal/{loanId}
 	
-This API takes the output from the Calcuation API as an input.
+This API takes the output from the Calculation API as an input.
 
 Onced called, a SMS will be generated and sent to the Cusomter's cell.
 
@@ -365,17 +365,17 @@ If required, you can resend the OTP using
 
 ## Bulk Customer and Application Creation
 
-To allow for the bulk insertion of Customers and Applications. There are APIs you can use.
+To allow for the bulk insertion of customers and Applications. There are APIs you can use.
 
-To add many Customers, call the API and pass in a collection of customer details
+To add many customers, call the API and pass in a collection of customer details
 
 		/api/ApplicationBulk/create-customers
 
 
-This will return a list of Ids, matched to the Customer.
+This will return a list of Ids, matched to the customer.
 
 
-To add many Application, call the API and pass in a collection of application requests.
+To add many Applications, call the API and pass in a collection of application requests.
 
 		/api/ApplicationBulk/create-applications
 
@@ -384,7 +384,7 @@ This will return a list of Ids, matched to the Application.
 
 ## Webhooks
 
-We provide a number of webhooks as notification for the following events
+We provide several webhooks as notification for the following events
 
 | Webhook     | Description |
 | ----------- | ----------- |
@@ -396,7 +396,7 @@ We provide a number of webhooks as notification for the following events
 | Application Approval Status Changed     | This is a notification that an application's approval status has changed only for registered partners        |
 | Loan Created     | This is a notification that an application has been converted into a loan        |
 | Loan Withdrawal Completed     | This is a notification that withdrawal has completed      |
-| New Message Posted     | This is a notification that a new message has been posted for an customer, application or loan        |
+| New Message Posted     | This is a notification that a new message has been posted for a customer, application or loan        |
 
 ## Getting Help
 
