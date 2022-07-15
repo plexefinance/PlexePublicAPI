@@ -20,6 +20,34 @@ https://github.com/Azure/autorest
 
 ## Authenication
 
+There are two types of user Customer and Partner. 
+
+A Customer is the primary applicant on an application. The scope of their functionaility is mostly for the managment of the applicaiton and loan.
+
+A Partner is a user that is assigned to an application. They have some visibility over the application details, but mostly to monitor the status of an application as it progresses throught the application process.
+
+To use the Authenication api, you will be required to login, supplying a username and password. This will return a token.
+
+    {
+		"firstName": "string",
+		"lastName": "string",
+		"id": "string",
+		"email": "string",
+		"username": "string",
+		"userType": "string",
+		"token": "string",
+		"expiresUTC": "2022-07-15T05:02:39.865Z",
+		"requiresTwoFactor": true
+    }
+
+This Bearer token will be required to be passed has a header on all the HTTP call
+
+     authorization: Bearer eyJhbGciOiJIUzI1NiIs....ARic
+	 
+If the token expires, you can either Refresh the token or relogin. 
+
+Tokens last 60 minues
+
 ## Create A Customer
 
 ## Create An Application
