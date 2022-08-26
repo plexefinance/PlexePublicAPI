@@ -1,0 +1,13 @@
+D:\Work\Upwork\plexe\code\PlexePublicAPIDemo\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\Upwork\plexe\code\PlexePublicAPIDemo\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.AssemblyInfoInputs.cache
+D:\Work\Upwork\plexe\code\PlexePublicAPIDemo\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.AssemblyInfo.cs
+D:\Work\Upwork\plexe\code\PlexePublicAPIDemo\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.csproj.CoreCompileInputs.cache
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\Common\PlexePublicAPIDemo.Common\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.deps.json
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\Common\PlexePublicAPIDemo.Common\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.dll
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\Common\PlexePublicAPIDemo.Common\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.pdb
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\Common\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\Common\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.AssemblyInfoInputs.cache
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\Common\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.AssemblyInfo.cs
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\Common\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.csproj.CoreCompileInputs.cache
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\Common\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.dll
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\Common\PlexePublicAPIDemo.Common\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.pdb

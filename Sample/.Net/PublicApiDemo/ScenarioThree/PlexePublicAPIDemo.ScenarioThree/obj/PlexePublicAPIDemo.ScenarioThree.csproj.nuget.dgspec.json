@@ -1,0 +1,142 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\ScenarioThree\\PlexePublicAPIDemo.ScenarioThree\\PlexePublicAPIDemo.ScenarioThree.csproj": {}
+  },
+  "projects": {
+    "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\Common\\PlexePublicAPIDemo.Common\\PlexePublicAPIDemo.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\Common\\PlexePublicAPIDemo.Common\\PlexePublicAPIDemo.Common.csproj",
+        "projectName": "PlexePublicAPIDemo.Common",
+        "projectPath": "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\Common\\PlexePublicAPIDemo.Common\\PlexePublicAPIDemo.Common.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\Common\\PlexePublicAPIDemo.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[108.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\ScenarioThree\\PlexePublicAPIDemo.ScenarioThree\\PlexePublicAPIDemo.ScenarioThree.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\ScenarioThree\\PlexePublicAPIDemo.ScenarioThree\\PlexePublicAPIDemo.ScenarioThree.csproj",
+        "projectName": "PlexePublicAPIDemo.ScenarioThree",
+        "projectPath": "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\ScenarioThree\\PlexePublicAPIDemo.ScenarioThree\\PlexePublicAPIDemo.ScenarioThree.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\ScenarioThree\\PlexePublicAPIDemo.ScenarioThree\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "targetAlias": "netcoreapp2.2",
+            "projectReferences": {
+              "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\Common\\PlexePublicAPIDemo.Common\\PlexePublicAPIDemo.Common.csproj": {
+                "projectPath": "D:\\Work\\Upwork\\plexe\\code\\PlexePublicAPI\\Sample\\.Net\\PublicApiDemo\\Common\\PlexePublicAPIDemo.Common\\PlexePublicAPIDemo.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

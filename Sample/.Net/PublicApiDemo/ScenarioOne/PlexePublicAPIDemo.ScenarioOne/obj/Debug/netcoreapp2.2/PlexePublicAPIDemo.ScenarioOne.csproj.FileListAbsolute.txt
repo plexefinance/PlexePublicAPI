@@ -1,0 +1,16 @@
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.deps.json
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.runtimeconfig.json
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.runtimeconfig.dev.json
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.dll
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.pdb
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.dll
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\bin\Debug\netcoreapp2.2\PlexePublicAPIDemo.Common.pdb
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.csproj.AssemblyReference.cache
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.AssemblyInfoInputs.cache
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.AssemblyInfo.cs
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.csproj.CoreCompileInputs.cache
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.csproj.CopyComplete
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.dll
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.pdb
+D:\Work\Upwork\plexe\code\PlexePublicAPI\Sample\.Net\PublicApiDemo\ScenarioOne\PlexePublicAPIDemo.ScenarioOne\obj\Debug\netcoreapp2.2\PlexePublicAPIDemo.ScenarioOne.genruntimeconfig.cache
