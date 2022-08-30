@@ -16,9 +16,9 @@ class ApplicationService
     {
         if ($e -> getResponse() -> getStatusCode() == '400')
         {
-            $response = json_decode($e -> getResponse()->getBody(true)->getContents());
-            return $response;
-            //return 'BAD REQUEST';
+            //$response = json_decode($e -> getResponse()->getBody(true)->getContents());
+            //return $response;
+            return 'BAD REQUEST';
             //$this->prepare_access_token();
         }
         else if ($e -> getResponse() -> getStatusCode() == '422')
@@ -226,13 +226,12 @@ class ApplicationService
                 }
                 ]
             }';
-            $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'/add-or-update-banking-data/'.$applicationId.'?bankName='.$bankName, $headers, $body);
-            //$request = new Request('POST', '//api/Application/add-or-update-banking-data/ea0fc739-80c0-614b-81bf-d3653c75f013?bankName=eiusmod dolore', $headers, $body);
+            $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'add-or-update-banking-data/'.$applicationId.'?bankName='.$bankName, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            //echo $res->getBody();
+            echo $res->getBody();
             $result = $res->getBody();            
             $decoded = json_decode($result);
-            return $decoded;
+            return $res->getBody();
         }
         catch (RequestException $e)
         {            
@@ -255,7 +254,7 @@ class ApplicationService
             //echo $res->getBody();
             $result = $res->getBody();            
             $decoded = json_decode($result);
-            return $decoded;
+            return $res->getBody();
         }
         catch (RequestException $e)
         {            
@@ -279,7 +278,7 @@ class ApplicationService
             //echo $res->getBody();
             $result = $res->getBody();            
             $decoded = json_decode($result);
-            return $decoded;
+            return  $res->getBody();
 
         }
         catch (RequestException $e)

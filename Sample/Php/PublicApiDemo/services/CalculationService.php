@@ -49,63 +49,55 @@ class CalculationService
 
     public function CalculateLOCSlider($key, $applicationId)
     {
-        /*CalculateLOCSliderResponse calculateLOCSliderResponse = new CalculateLOCSliderResponse();
         try
         {                
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "application-loc-calculation-slider?applicationId=" + applicationId + "");
-            var request = new RestRequest();
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key);
-            request.Method = Method.Post;
-            SliderRequest sliderRequest = new SliderRequest()
-            {
-                Amount = 23
-            };
-            var body = JsonConvert.SerializeObject(sliderRequest);
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
-            calculateLOCSliderResponse = JsonConvert.DeserializeObject<CalculateLOCSliderResponse>(response.Content);
-            Console.WriteLine(response.Content);
-            return calculateLOCSliderResponse;
+            $client = new Client();
+            $headers = [
+              'Content-Type' => 'application/json',
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer '.$key
+            ];
+            $body = '{
+              "amount": 85354485.92348841
+            }';
+            $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'application-loc-calculation-slider?applicationId='.$applicationId, $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
+            return $res->getBody();
         }
         catch (RequestException $e)
         {
             $response =  $this->StatusCodeHandling($e);
             return $response;
-        }*/
+        }
     }
 
     public function ApplicationLocCalculation($key, $applicationId)
     {
-        //ApplicationLocCalculation applicationLocCalculationResponse = new ApplicationLocCalculation();
-        /*try
+        try
         {
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "application-loc-calculation?applicationId=" + applicationId + "");
-            var request = new RestRequest();
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key);
-            request.Method = Method.Post;
-            CalculationRequest calculationRequest = new CalculationRequest()
-            {
-                Amount = 23,
-                FixedRepaymentCalculation = true,
-                PercentOfIncome = 2,
-                Terms = 22
-            };
-            var body = JsonConvert.SerializeObject(calculationRequest);
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
-            applicationLocCalculationResponse = JsonConvert.DeserializeObject<ApplicationLocCalculation>(response.Content);
-            return applicationLocCalculationResponse;
+            $client = new Client();
+            $headers = [
+              'Content-Type' => 'application/json',
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer '.$key
+            ];
+            $body = '{
+              "amount": 18041353.02463527,
+              "percentOfIncome": -67586202.88244557,
+              "terms": -45408789,
+              "fixedRepaymentCalculation": true
+            }';
+            $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'application-loc-calculation?applicationId='.$applicationId, $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
+
         }
         catch (RequestException $e)
         {
             $response =  $this->StatusCodeHandling($e);
             return $response;
-        }*/
+        }
     }
 }
 ?>

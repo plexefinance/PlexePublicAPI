@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Request;
   
 class WebhookService
 {
-    /*private $BASE_URI = "https://apidemo.plexe.co/";
+    private $BASE_URI = "https://apidemo.plexe.co/";
     private $APPLICATION_URI ="api/Webhook/";
 
     function StatusCodeHandling($e)
@@ -51,30 +51,26 @@ class WebhookService
     public function RegisterWebhook($key, $partnerId,$customerId)
     {
         try
-        {
-            var client = new RestClient(BASE_URI + WEBHOOK_URI + "register?partnerId=" + partnerId + "&customerId=" + customerId + "");
-            var request = new RestRequest();
-            request.Method = Method.Post;
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key + "");
+        {   
+            $client = new Client();
+            $headers = [
+              'Content-Type' => 'application/json',
+              'Authorization' => 'Bearer '.$key
+            ];
+            $body = '{
+              "id": "bb1393df-4ac3-e796-7531-123a9a748c68",
+              "webhookUri": "",
+              "secret": "",
+              "isActive": true,
+              "webhooks": [
+                "",
+                ""
+              ]
+            }';
+            $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'register?partnerId='.$partnerId.'&customerId='.$customerId, $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
 
-
-            WebhookSubscription webhookSubscription = new WebhookSubscription()
-            {
-                id ="",
-                isActive =true,
-                secret ="",
-                webhooks = new List<string>() { "", "", "" },
-                webhookUri = ""
-            };
-
-
-            var body = JsonConvert.SerializeObject(webhookSubscription);
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
-            Console.WriteLine(Environment.NewLine + response.Content);                
             return true;
         }
         catch (RequestException $e)
@@ -82,6 +78,7 @@ class WebhookService
             $response =  $this->StatusCodeHandling($e);
             return $response;
         }
-    }*/
+    }
 }
+$webhookService = new WebhookService();
 ?>

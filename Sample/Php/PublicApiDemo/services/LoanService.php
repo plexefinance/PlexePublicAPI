@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Request;
   
 class LoanService
 {
-    /*private $BASE_URI = "https://apidemo.plexe.co/";
+    private $BASE_URI = "https://apidemo.plexe.co/";
     private $APPLICATION_URI ="api/Loan/";
 
     function StatusCodeHandling($e)
@@ -49,18 +49,17 @@ class LoanService
 
     public function GetCustomerLoans($key, $customerId)
     {
-        LoansResponse customerLoans = new LoansResponse();
         try
         {
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "get-customer-loans/" + customerId + "");
-            var request = new RestRequest();
-            request.Method = Method.Get;
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key + "");
-            RestResponse response = client.Execute(request);
-            Console.WriteLine(Environment.NewLine + response.Content);
-            customerLoans = JsonConvert.DeserializeObject<LoansResponse>(response.Content);
-            return customerLoans;
+            $client = new Client();
+            $headers = [
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer '.$key
+            ];
+            $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-customer-loans/'.$customerId, $headers);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
+            return $res->getBody();
         }
         catch (RequestException $e)
         {
@@ -70,19 +69,17 @@ class LoanService
     }
     public function GetLoan($key, $loanId)
     {
-        LoanResponse loan = new LoanResponse();
         try
         {
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "get-loan/" + loanId + "");
-            var request = new RestRequest();
-                
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key + "");
-            request.Method = Method.Get;
-            RestResponse response = client.Execute(request);
-            Console.WriteLine(Environment.NewLine + response.Content);
-            loan = JsonConvert.DeserializeObject<LoanResponse>(response.Content);
-            return loan;
+            $client = new Client();
+            $headers = [
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer '.$key
+            ];
+            $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-loan/'.$loanId, $headers);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
+            return $res->getBody();
         }
         catch (RequestException $e)
         {
@@ -95,15 +92,15 @@ class LoanService
         LoanTransaction loanTransactions = new LoanTransaction();
         try
         {
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "get-transactions/" + loanId + "?skip=0&take=2147483647");
-            var request = new RestRequest();
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key + "");
-            request.Method = Method.Get;
-            RestResponse response = client.Execute(request);
-            Console.WriteLine(Environment.NewLine + response.Content);
-            loanTransactions = JsonConvert.DeserializeObject<LoanTransaction>(response.Content);
-            return loanTransactions;
+            $client = new Client();
+            $headers = [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer '.$key
+            ];
+            $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-transactions/'.$loanId.'?skip=0&take=2147483647', $headers);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
+            return $res->getBody();
         }
         catch (RequestException $e)
         {
@@ -113,18 +110,17 @@ class LoanService
     }
     public function GetWithdrawals($key, $loanId)
     {
-        PagedListAdvanceProjectionResponse withdrawals = new PagedListAdvanceProjectionResponse();
         try
         {
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "get-withdrawals/" + loanId + "?skip=0&take=2147483647");
-            var request = new RestRequest();
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key + "");
-            request.Method = Method.Get;
-            RestResponse response = client.Execute(request);
-            Console.WriteLine(Environment.NewLine + response.Content);
-            withdrawals = JsonConvert.DeserializeObject<PagedListAdvanceProjectionResponse>(response.Content);
-            return withdrawals;
+            $client = new Client();
+            $headers = [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer '.$key
+            ];
+            $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-withdrawals/'.$loanId.'?skip=0&take=2147483647', $headers);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
+            return $res->getBody();
         }
         catch (RequestException $e)
         {
@@ -134,18 +130,17 @@ class LoanService
     }
     public function GetTotalBalance($key, $loanId)
     {
-        LoanBalanceResponse loanBalanceResponse = new LoanBalanceResponse();
         try
         {
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "get-total-balance/" + loanId + "?skip=0&take=2147483647");
-            var request = new RestRequest();
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key + "");
-            request.Method = Method.Get;
-            RestResponse response = client.Execute(request);
-            Console.WriteLine(Environment.NewLine + response.Content);
-            loanBalanceResponse = JsonConvert.DeserializeObject<LoanBalanceResponse>(response.Content);
-            return loanBalanceResponse;
+            $client = new Client();
+            $headers = [
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer '.$key
+            ];
+            $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-total-balance/'.$loanId, $headers);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
+            return $res->getBody();
         }
         catch (RequestException $e)
         {
@@ -155,30 +150,26 @@ class LoanService
     }
     public function MakeWithdrawalLineOfCredit($key, $loanId)
     {
-        BankDetails bankDetails = new BankDetails();
         try
         {
-            MakeWithdrawalLineOfCredit makeWithdrawalLineOfCredit = new MakeWithdrawalLineOfCredit()
-            {
-                calculation = new Calculation() {
-                    amount = 65,
-                    fixedRepaymentCalculation = false,
-                    percentOfIncome = 67,
-                    terms = 32
-                }
-            };
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "make-withdrawal-line-of-credit/" + loanId + "");
-            var request = new RestRequest();
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key);
-            request.Method = Method.Post;
-            var body = JsonConvert.SerializeObject(makeWithdrawalLineOfCredit);
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
-            bankDetails = JsonConvert.DeserializeObject<BankDetails>(response.Content);
-            Console.WriteLine(response.Content);
-            return bankDetails;
+            $client = new Client();
+            $headers = [
+              'Content-Type' => 'application/json',
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer '.$key
+            ];
+            $body = '{
+              "calculation": {
+                "amount": 85796499.59002653,
+                "percentOfIncome": -61505291.60663152,
+                "terms": 42126013,
+                "fixedRepaymentCalculation": false
+              }
+            }';
+            $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'make-withdrawal-line-of-credit/'.$loanId, $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
+            return $res->getBody();
         }
         catch (RequestException $e)
         {
@@ -190,15 +181,15 @@ class LoanService
     {
         try
         {
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "resend-withdrawal-otp/" + loanId + "");
-            var request = new RestRequest();
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key);
-            request.Method = Method.Post;
-            RestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
-            return JsonConvert.DeserializeObject<ResendWithdrawalOtpResponse>(response.Content);
+            $client = new Client();
+            $headers = [
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer '.$key
+            ];
+            $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'resend-withdrawal-otp/'.$loanId, $headers);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
+            return $res->getBody();
         }
         catch (RequestException $e)
         {
@@ -210,36 +201,34 @@ class LoanService
     {
         try
         {
-            ConfirmWithdrawalLineOfCreditModel confirmWithdrawalLineOfCreditModel = new ConfirmWithdrawalLineOfCreditModel()
-            {
-                advanceRate =55,
-                terms =44,
-                amount =44,
-                commission =new Commission() { 
-                    drawFee=33,
-                    trailing=4,
-                    upfrontFee=5
-                },
-                dateUTC = new DateTime(),
-                fixedRepayment = 4,
-                fixedRepaymentFee =5,
-                nextRepaymentDate = new DateTime(),
-                otp = Otp,
-                percentageOfIncome =43,
-                priority =true,
-                totalRepaymentAmount =3,
-                weeklyPayment=4
-            };
-            var client = new RestClient(BASE_URI + APPLICATION_URI + "confirm-withdrawal-line-of-credit/" + loanId + "");
-            var request = new RestRequest();
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Authorization", "Bearer " + key);
-            request.Method = Method.Post;
-            var body = JsonConvert.SerializeObject(confirmWithdrawalLineOfCreditModel);
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            RestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            $client = new Client();
+            $headers = [
+              'Content-Type' => 'application/json',
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer '.$key
+            ];
+            $body = '{
+              "amount": 55087673.69903821,
+              "priority": true,
+              "percentageOfIncome": -38173445.44605397,
+              "weeklyPayment": 24981594.539666712,
+              "totalRepaymentAmount": 80012459.30422437,
+              "nextRepaymentDate": "1944-09-19T23:32:28.472Z",
+              "advanceRate": -34579787.9870168,
+              "otp": ".$Otp.",
+              "dateUTC": "2006-11-05T17:47:17.357Z",
+              "commission": {
+                "upfrontFee": 57705032.07244721,
+                "trailing": 7608803.388788447,
+                "drawFee": 11811609.115375355
+              },
+              "terms": 37293038,
+              "fixedRepaymentFee": -60423280.766545594,
+              "fixedRepayment": 46242054.91330761
+            }';
+            $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'confirm-withdrawal-line-of-credit/'.$loanId, $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            echo $res->getBody();
             return true;
         }
         catch (RequestException $e)
@@ -247,6 +236,6 @@ class LoanService
             $response =  $this->StatusCodeHandling($e);
             return $response;
         }
-    }  */
+    }
 }
 ?>
