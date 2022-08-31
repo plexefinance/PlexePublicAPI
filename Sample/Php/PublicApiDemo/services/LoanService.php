@@ -1,15 +1,13 @@
 <?php
 
-require_once 'HTTP/Request2.php';
 require_once 'vendor/autoload.php';
-  
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
   
 class LoanService
 {
-    private $BASE_URI = "https://apidemo.plexe.co/";
+    private $BASE_URI = "http://localhost:5002/";
     private $APPLICATION_URI ="api/Loan/";
 
     function StatusCodeHandling($e)
@@ -58,13 +56,13 @@ class LoanService
             ];
             $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-customer-loans/'.$customerId, $headers);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function GetLoan($key, $loanId)
@@ -78,18 +76,17 @@ class LoanService
             ];
             $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-loan/'.$loanId, $headers);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function GetTransactions($key, $loanId)
     {
-        LoanTransaction loanTransactions = new LoanTransaction();
         try
         {
             $client = new Client();
@@ -99,13 +96,13 @@ class LoanService
             ];
             $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-transactions/'.$loanId.'?skip=0&take=2147483647', $headers);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function GetWithdrawals($key, $loanId)
@@ -119,13 +116,13 @@ class LoanService
             ];
             $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-withdrawals/'.$loanId.'?skip=0&take=2147483647', $headers);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function GetTotalBalance($key, $loanId)
@@ -139,13 +136,13 @@ class LoanService
             ];
             $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-total-balance/'.$loanId, $headers);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function MakeWithdrawalLineOfCredit($key, $loanId)
@@ -160,21 +157,21 @@ class LoanService
             ];
             $body = '{
               "calculation": {
-                "amount": 85796499.59002653,
-                "percentOfIncome": -61505291.60663152,
-                "terms": 42126013,
+                "amount": 2,
+                "percentOfIncome": 3,
+                "terms": 3,
                 "fixedRepaymentCalculation": false
               }
             }';
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'make-withdrawal-line-of-credit/'.$loanId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function ResendWithdrawalOtp($key, $loanId)
@@ -188,13 +185,13 @@ class LoanService
             ];
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'resend-withdrawal-otp/'.$loanId, $headers);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function ConfirmWithdrawalLineOfCredit($key, $loanId, $Otp)
@@ -228,13 +225,13 @@ class LoanService
             }';
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'confirm-withdrawal-line-of-credit/'.$loanId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return true;
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
 }

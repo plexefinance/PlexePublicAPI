@@ -1,19 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-  <title>Dashboard Template for Bootstrap</title>
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
-  <!-- Bootstrap core CSS -->
-  <link href="./css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="./css/dashboard.css" rel="stylesheet">
-</head>
+<?php include('common/head.php'); ?>
 
 <body>
   <?php include('common/nav.php'); ?>
@@ -24,80 +12,110 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2"><?php include('common/resolve-title.php'); ?></h1>
         </div>
-        <div class="section">
-          <div class="col-md-12">
-            <form class="form-inline" method="post">
-              <div class="form-group mb-2">
-                <label for="staticEmail2" class="sr-only">UserName</label>
-                <input type="text" class="form-control" id="staticEmail2" value="simon@cuce.co.au" name="username" placeholder="username">
+        <div class="section row">
+          <div class="col-md-3">
+            <div id="validation-message" class="alert alert-danger" role="alert" style="display:none;">
+              <span id="message">
+                
+              </span>
+              <button type="button" class="close" id="close-alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form method="post" id="form1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputUserName">UserName</label>
+                  <input type="text" class="form-control" id="inputUserName" value="simon@cuce.co.au" name="username" placeholder="username">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword">Password</label>
+                  <input type="password" class="form-control" id="inputPassword" value="DelightWAY12!@" name="password" placeholder="Password">
+                </div>
               </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <input type="password" class="form-control" id="inputPassword2" value="DelightWAY12!@" name="password" placeholder="Password">
+              <div class="form-group">
+                <label for="inputApplicationId">Application Id</label>
+                <input type="text" class="form-control" id="inputApplicationId" value="" name="applicationId" placeholder="Application Id">
               </div>
-              <button type="submit" class="btn btn-primary mb-2" name="button1">Start Process</button>
+              <div class="form-group">
+                <label for="inputApplicantId">Applicant Id</label>
+                <input type="text" class="form-control" id="inputApplicantId" value="" name="applicantId" placeholder="Applicant Id">
+              </div>
+              <button type="submit" class="btn btn-primary mb-2" name="button1">Start Process</button>              
             </form>
-
+          </div>
+          <div class="col-md-9" style="border: 2px solid lightblue;overflow:auto; max-height:800px;">
             <?php
             include('./services/service.php');
             if (isset($_POST['button1'])) {
               echo "</br>";
               if (!isset($_POST['username'])) {
-                echo "username is required!!!";
-                exit;
+                $appService -> writeErrorMessage("USERNAME IS REQUIRED!!!");
               }
               if (!isset($_POST['password'])) {
-                echo "Password is required!!!";
-                exit;
+                $appService -> writeErrorMessage("PASSWORD IS REQUIRED!!!");
               }
-              echo "</br>";
-              echo $_POST['username'];
-              echo "</br>";
-              echo $_POST['password'];
-
-              if (isset($_POST['username']) && isset($_POST['password'])) {
+              if (!isset($_POST['applicationId']) || empty($_POST['applicationId'])) {
+                $appService -> writeErrorMessage("APPLICATION ID IS REQUIRED!!!");
+              }
+              if (!isset($_POST['applicantId']) || empty($_POST['applicantId'])) {
+                $appService -> writeErrorMessage("APPLICANT ID IS REQUIRED!!!");
+              }
+              
+              if (isset($_POST['username']) 
+              && isset($_POST['password'])
+              && isset($_POST['applicationId'])
+              && isset($_POST['applicantId'])
+              ) {
 
                 $apiUsername = $_POST['username'];
                 $apiPassword = $_POST['password'];
+                $applicationId = $_POST['applicationId'];
+                $applicantId = $_POST['applicantId'];
+
+                $appService -> writeMessage("USERNAME IS: ".$apiUsername."");
+                $appService -> writeMessage("APPLICATION ID IS: ".$applicationId."");
+                $appService -> writeMessage("APPLICANT ID IS: ".$applicantId."");
 
                 // Step 1: Logging into application and fetch token.
-                $appService -> writeMessage("Step 1: Logging into application and fetch token!!!");
+                $appService -> writeMessage("<b>STEP 1: LOGGING INTO APPLICATION AND FETCH TOKEN!!!</b>");
                 $result = $appService -> AuthenticateUser($apiUsername, $apiPassword);
-                $key = $result -> value -> token;
-                $applicationId = '0b124aa4-2c33-430f-9d82-d1ff0e1d60c4';
-                $applicantId = '0b124aa4-2c33-430f-9d82-d1ff0e1d60c4';
-
+                $key = $result -> token;
+                $applicationId = '6690b0c2-6f86-4e62-a440-01a74abe7c8f';
+                $applicantId = '7a2f7619-c4d0-408e-90a8-58cce05bec4b';
+                
+	
                 // STEP 2: Add Company Details
-                $appService -> writeMessage("STEP 2: Add Company Details!!!");
-                //$appService -> AddCompanyDetails(applicationApprovalService, key, applicationId);
+                $appService -> writeMessage("<b>STEP 2: Add Company Details!!!</b>");
+                //$appService -> AddCompanyDetails($key, $applicationId);
 
                 // STEP 3: Add Primary Applicant Details
-                $appService -> writeMessage("STEP 3: Add Primary Applicant Details!!!");
-                //$appService -> AddPrimaryApplicantDetails(applicationApprovalService, key, applicationId);
+                $appService -> writeMessage("<b>STEP 3: Add Primary Applicant Details!!!</b>");
+                //$appService -> AddPrimaryApplicantDetails($key, $applicationId);
                 
                 // STEP 4: Get All Banks
-                $appService -> writeMessage("STEP 4: Get All Banks!!!");
-                //$appService -> GetAllBanks(applicationApprovalService, key);
+                $appService -> writeMessage("<b>STEP 4: Get All Banks!!!</b>");
+                //$appService -> GetAllBanks($key);
 
                 // STEP 5: Set Primary Bank Account
-                $appService -> writeMessage("STEP 5: Set Primary Bank Account!!!");
-                //$appService -> SetPrimaryBankAccount(applicationApprovalService, key, applicationId);
+                $appService -> writeMessage("<b>STEP 5: Set Primary Bank Account!!!</b>");
+                //$appService -> SetPrimaryBankAccount($key, $applicationId);
 
                 // STEP 6: Get Contracts
-                $appService -> writeMessage("STEP 6: Get Contracts!!!");
-                //$appService -> GetContracts(applicationApprovalService, key, applicationId);
+                $appService -> writeMessage("<b>STEP 6: Get Contracts!!!</b>");
+                //$appService -> GetContracts($key, $applicationId);
                 
                 // STEP 7: Sign Contracts
-                $appService -> writeMessage("STEP 7: Sign Contracts!!!");
-                //$appService -> SignContracts(applicationApprovalService, key, applicationId, applicantId);
+                $appService -> writeMessage("<b>STEP 7: Sign Contracts!!!</b>");
+                //$appService -> SignContracts($key, $applicationId, $applicantId);
 
                 // STEP 8: Get Required Documents
-                $appService -> writeMessage("STEP 8: Get Required Documents!!!");
-                //$appService -> GetRequiredDocuments(applicationApprovalService, key, applicationId);
+                $appService -> writeMessage("<b>STEP 8: Get Required Documents!!!</b>");
+                //$appService -> GetRequiredDocuments($key, $applicationId);
 
                 // STEP 9: Submit Required Documents
-                $appService -> writeMessage("STEP 9: Submit Required Documents!!!");
-                //$appService -> SubmitRequiredDocuments(applicationApprovalService, key, applicationId);
+                $appService -> writeMessage("<b>STEP 9: Submit Required Documents!!!</b>");
+                $appService -> SubmitRequiredDocuments($key, $applicationId);
               }
             }
             ?>
@@ -107,20 +125,55 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script>
-    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-  </script>
-  <script src="./js/popper.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
-  <!-- Icons -->
-  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-  <script>
-    feather.replace()
+  <?php include('common/footer.php'); ?>
+  <script type="text/javascript">
+  // Document is ready
+    $(document).ready(function () {
+        
+        $("#close-alert").click(function (event) {
+            $("#validation-message").hide();
+        });
+        $('#form1').on('submit', function() {
+            return ValidateForm();
+        });
+        $("#inlineRadio1").click(function (event) {
+            var value = event.target.value;
+            $("#inputOTP").prop("disabled",true);
+	    });
+        $("#inlineRadio2").click(function (event) {
+            var value = event.target.value;
+            $("#inputOTP").prop("disabled",false);
+	    });
+
+        function ValidateForm() { 
+            let inputUserName = $("#inputUserName").val();
+            let inputPassword = $("#inputPassword").val();
+            let inputApplicationId = $("#inputApplicationId").val();
+            let inputApplicantId = $("#inputApplicantId").val();
+            
+	        if (inputUserName.length == "") {
+	            $("#message").text('Username is required');
+                $("#validation-message").show();
+	            return false;
+	        } else if (inputPassword.length == "") {
+	            $("#message").text('Password is required');
+                $("#validation-message").show();
+	            return false;
+	        } if (inputApplicationId.length == "") {
+	            $("#message").text('Application Id is required');
+                $("#validation-message").show();
+	            return false;
+	        } if (inputApplicantId.length == "") {
+	            $("#message").text('Applicant Id is required');
+                $("#validation-message").show();
+	            return false;
+	        } else {
+	            $("#validation-message").hide();
+                return true;
+	        }
+        }
+    });
+
   </script>
 </body>
-
 </html>

@@ -1,23 +1,20 @@
 <?php
 
-require_once 'HTTP/Request2.php';
 require_once 'vendor/autoload.php';
-  
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
   
 class ApplicationApprovalService
 {
-    private $BASE_URI = "https://apidemo.plexe.co/";
+    private $BASE_URI = "http://localhost:5002/";
     private $APPLICATION_URI ="api/ApplicationApproval/";
 
     function StatusCodeHandling($e)
     {
         if ($e -> getResponse() -> getStatusCode() == '400')
         {
-            return $response;
-            //return 'BAD REQUEST';
+            return 'BAD REQUEST';
             //$this->prepare_access_token();
         }
         else if ($e -> getResponse() -> getStatusCode() == '422')
@@ -66,13 +63,13 @@ class ApplicationApprovalService
             }';
             $request = new Request('POST', $this -> BASE_URI.$this -> APPLICATION_URI.'add-company-details/' . $applicationId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return true;
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function AddPrimaryApplicantDetails($key, $applicationId)
@@ -95,7 +92,7 @@ class ApplicationApprovalService
                     "name": "simon",
                     "address": "address",
                     "dateOfBirth": "2002-05-08T12:32:42.422Z",
-                    "image": "image",
+                    "image": "",
                     "city": "city"
                 },
                 "isPrimary": true,
@@ -110,13 +107,13 @@ class ApplicationApprovalService
             }';
             $request = new Request('POST', $this -> BASE_URI.$this -> APPLICATION_URI.'add-primary-applicant-details/' . $applicationId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return true;
+            $result = $res -> getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function GetAllBanks($key)
@@ -130,13 +127,13 @@ class ApplicationApprovalService
             ];
             $request = new Request('GET', $this -> BASE_URI.$this -> APPLICATION_URI.'get-all-banks', $headers);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function SetPrimaryBankAccount($key,$applicationId)
@@ -166,13 +163,13 @@ class ApplicationApprovalService
             }';
             $request = new Request('POST', $this -> BASE_URI.$this -> APPLICATION_URI.'set-primary-bank/' . $applicationId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return true;
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function GetContracts($key, $applicationId)
@@ -186,13 +183,13 @@ class ApplicationApprovalService
             ];
             $request = new Request('GET', $this -> BASE_URI.$this -> APPLICATION_URI.'get-contracts/' . $applicationId, $headers);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function GetRequiredDocuments($key, $applicationId)
@@ -206,12 +203,13 @@ class ApplicationApprovalService
             ];
             $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'get-required-documents/'.$applicationId.'?skip=0&take=2147483647', $headers);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function SignContracts($key, $applicationId, $applicantId)
@@ -232,12 +230,14 @@ class ApplicationApprovalService
             }';
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'sign-contract/'.$applicationId.'/'.$applicantId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            print_r($decoded);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     public function SubmitRequiredDocuments($key, $applicationId)
@@ -254,7 +254,7 @@ class ApplicationApprovalService
               'multipart' => [
                 [
                   'name' => 'fileData',
-                  'contents' => Utils::tryFopen('/path/to/file', 'r'),
+                  'contents' => '',
                   'filename' => '/path/to/file',
                   'headers'  => [
                     'Content-Type' => '<Content-type header>'
@@ -263,13 +263,13 @@ class ApplicationApprovalService
             ]];
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'submit-required-document/'.$applicationId.'?fileType=eiusmod dolore&fileName=eiusmod dolore&details=eiusmod dolore', $headers);
             $res = $client->sendAsync($request, $options)->wait();
-            echo $res->getBody();
-            return true;
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
 }

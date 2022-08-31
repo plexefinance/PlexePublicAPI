@@ -1,15 +1,13 @@
 <?php
 
-require_once 'HTTP/Request2.php';
 require_once 'vendor/autoload.php';
-  
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
   
 class AuthenticationService
 {
-    private $BASE_URI = "https://apidemo.plexe.co/";
+    private $BASE_URI = "http://localhost:5002/";
     private $APPLICATION_URI ="api/Authenication/";
 
     function StatusCodeHandling($e)
@@ -56,13 +54,12 @@ class AuthenticationService
             $request = new Request('GET', $this -> BASE_URI.$this -> APPLICATION_URI.'login?username='.$username.'&password='. $password, $headers);
             $res = $client->sendAsync($request)->wait();
             $result = $res->getBody();
-            $decoded = json_decode($result);
-            return $decoded;                
+            $decoded = json_decode($result); 
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }      
 }

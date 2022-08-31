@@ -1,15 +1,12 @@
 <?php
-
-require_once 'HTTP/Request2.php';
 require_once 'vendor/autoload.php';
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 
 class ApplicationService
 {
-    private $BASE_URI = "https://apidemo.plexe.co/";
+    private $BASE_URI = "http://localhost:5002/";
     private $APPLICATION_URI = "api/Application/";
 
     function StatusCodeHandling($e)
@@ -64,14 +61,12 @@ class ApplicationService
             $res = $client->sendAsync($request)->wait();
             
             $result = $res->getBody();
-            
             $decoded = json_decode($result);
-            return $decoded; 
+            return $decoded;
         }
         catch (RequestException $e)
         {            
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }       
 
@@ -131,14 +126,12 @@ class ApplicationService
             $res = $client->sendAsync($request)->wait();   
             
             $result = $res->getBody();
-            
             $decoded = json_decode($result);
             return $decoded; 
         }
         catch (RequestException $e)
         {            
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
     
@@ -155,14 +148,13 @@ class ApplicationService
             $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'application-offer/'.$applicationId.'?force=false', $headers);
             $res = $client->sendAsync($request)->wait();
                 
-            $result = $res->getBody();            
+            $result = $res->getBody();
             $decoded = json_decode($result);
-            return $decoded; 
+            return $decoded;
         }
         catch (RequestException $e)
         {            
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
         
@@ -228,15 +220,13 @@ class ApplicationService
             }';
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'add-or-update-banking-data/'.$applicationId.'?bankName='.$bankName, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            $result = $res->getBody();            
+            $result = $res->getBody();
             $decoded = json_decode($result);
-            return $res->getBody();
+            return array($res->getStatusCode(), $decoded);
         }
         catch (RequestException $e)
         {            
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
 
@@ -251,15 +241,13 @@ class ApplicationService
             ];
             $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'process-application/'.$applicationId.'?currentProcess='.$currentProcess, $headers);
             $res = $client->sendAsync($request)->wait();
-            //echo $res->getBody();
-            $result = $res->getBody();            
+            $result = $res->getBody();
             $decoded = json_decode($result);
-            return $res->getBody();
+            return $decoded;
         }
         catch (RequestException $e)
         {            
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
 
@@ -275,19 +263,15 @@ class ApplicationService
             ];
             $request = new Request('GET',  $this->BASE_URI.$this->APPLICATION_URI.'application-status/'.$applicationId, $headers);
             $res = $client->sendAsync($request)->wait();
-            //echo $res->getBody();
-            $result = $res->getBody();            
+            $result = $res->getBody();
             $decoded = json_decode($result);
-            return  $res->getBody();
+            return $decoded;
 
         }
         catch (RequestException $e)
         {            
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
-}   
-// Create a new object
-$applicationService = new ApplicationService();
+}
 ?>

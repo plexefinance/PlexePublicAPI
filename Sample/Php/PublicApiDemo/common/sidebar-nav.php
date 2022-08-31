@@ -2,12 +2,6 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="<?php if(str_contains($_SERVER['REQUEST_URI'], 'demo')) { echo 'nav-link active'; } else { echo 'nav-link'; } ?>" href="demo.php">
-                  <span data-feather="home"></span>
-                  Dashboard <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a class="<?php if(str_contains($_SERVER['REQUEST_URI'], 'first')) { echo 'nav-link active'; } else { echo 'nav-link'; } ?>" href="scenario-first.php">
                   <span data-feather="file"></span>
                   Scenario First

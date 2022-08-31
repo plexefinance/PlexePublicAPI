@@ -1,22 +1,20 @@
 <?php
 
-require_once 'HTTP/Request2.php';
 require_once 'vendor/autoload.php';
-  
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
   
 class CalculationService
 {
-    private $BASE_URI = "https://apidemo.plexe.co/";
+    private $BASE_URI = "http://localhost:5002/";
     private $APPLICATION_URI ="api/Calculation/";
 
     function StatusCodeHandling($e)
     {
         if ($e -> getResponse() -> getStatusCode() == '400')
         {
-            return $response;
+            return 'BAD REQUEST';
             //return 'BAD REQUEST';
             //$this->prepare_access_token();
         }
@@ -58,17 +56,17 @@ class CalculationService
               'Authorization' => 'Bearer '.$key
             ];
             $body = '{
-              "amount": 85354485.92348841
+              "amount": 34
             }';
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'application-loc-calculation-slider?applicationId='.$applicationId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-            return $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
 
@@ -83,20 +81,21 @@ class CalculationService
               'Authorization' => 'Bearer '.$key
             ];
             $body = '{
-              "amount": 18041353.02463527,
-              "percentOfIncome": -67586202.88244557,
-              "terms": -45408789,
+              "amount": 23,
+              "percentOfIncome": 22,
+              "terms": 6,
               "fixedRepaymentCalculation": true
             }';
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'application-loc-calculation?applicationId='.$applicationId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
 
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
 }

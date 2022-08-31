@@ -1,8 +1,6 @@
 <?php
 
-require_once 'HTTP/Request2.php';
 require_once 'vendor/autoload.php';
-  
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
@@ -69,16 +67,14 @@ class WebhookService
             }';
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'register?partnerId='.$partnerId.'&customerId='.$customerId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
-            echo $res->getBody();
-
-            return true;
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
         }
         catch (RequestException $e)
         {
-            $response =  $this->StatusCodeHandling($e);
-            return $response;
+            return 'BAD_REQUEST';
         }
     }
 }
-$webhookService = new WebhookService();
 ?>
