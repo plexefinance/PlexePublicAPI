@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlexePublicAPIDemo.Common.Model
+﻿namespace PlexePublicAPIDemo.Common.Model
 {
-
+    using System;
     public class AdvanceProjectionResponse
     {
-
         public int? Terms { get; set; }
         public bool? Priority { get; set; }
         public double? Percentage { get; set; }

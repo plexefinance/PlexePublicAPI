@@ -6,18 +6,18 @@ namespace PlexePublicAPIDemo.Common.Model
 {
     public class SelectBankRequest
     {
-        public bool selected { get; set; }
-        public string name { get; set; }
-        public string accountNumber { get; set; }
-        public string id { get; set; }
-        public string bsb { get; set; }
-        public string balance { get; set; }
-        public string available { get; set; }
-        public string accountHolder { get; set; }
-        public string accountType { get; set; }
-        public string slug { get; set; }
-        public bool enabled { get; set; }
-        public bool archived { get; set; }
-        public string accountId { get; set; }
+        public bool Selected { get; set; }
+        public string Name { get; set; }
+        public string AccountNumber { get; set; }
+        public string Id { get; set; }
+        public string Bsb { get; set; }
+        public string Balance { get; set; }
+        public string Available { get; set; }
+        public string AccountHolder { get; set; }
+        public string AccountType { get; set; }
+        public string Slug { get; set; }
+        public bool Enabled { get; set; }
+        public bool Archived { get; set; }
+        public string AccountId { get; set; }
     }
 }

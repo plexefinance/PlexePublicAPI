@@ -27,11 +27,11 @@ namespace PlexePublicAPIDemo.Common
 
                 WebhookSubscription webhookSubscription = new WebhookSubscription()
                 {
-                    id ="",
-                    isActive =true,
-                    secret ="",
-                    webhooks = new List<string>() { "", "", "" },
-                    webhookUri = ""
+                    Id ="",
+                    IsActive =true,
+                    Secret ="",
+                    Webhooks = new List<string>() { "", "", "" },
+                    WebhookUri = ""
                 };
 
 

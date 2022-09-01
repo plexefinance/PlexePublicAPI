@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace PlexePublicAPIDemo.Common.Model
 {
     public class ConfirmWithdrawalLineOfCreditModel
     {
-        public double amount { get; set; }
-        public bool priority { get; set; }
-        public double percentageOfIncome { get; set; }
-        public double weeklyPayment { get; set; }
-        public double totalRepaymentAmount { get; set; }
-        public DateTime nextRepaymentDate { get; set; }
-        public double advanceRate { get; set; }
-        public string otp { get; set; }
-        public DateTime dateUTC { get; set; }
-        public Commission commission { get; set; }
-        public int terms { get; set; }
-        public double fixedRepaymentFee { get; set; }
-        public double fixedRepayment { get; set; }
+        public double Amount { get; set; }
+        public bool Priority { get; set; }
+        public double PercentageOfIncome { get; set; }
+        public double WeeklyPayment { get; set; }
+        public double TotalRepaymentAmount { get; set; }
+        public DateTime NextRepaymentDate { get; set; }
+        public double AdvanceRate { get; set; }
+        public string Otp { get; set; }
+        public DateTime DateUTC { get; set; }
+        public Commission Commission { get; set; }
+        public int Terms { get; set; }
+        public double FixedRepaymentFee { get; set; }
+        public double FixedRepayment { get; set; }
     }
 }

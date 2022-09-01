@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlexePublicAPIDemo.Common.Model
+﻿namespace PlexePublicAPIDemo.Common.Model
 {
     public class OfferValue
     {
-        public string offerId { get; set; }
-        public object facilityLimit { get; set; }
-        public object creditLimit { get; set; }
-        public Commission commission { get; set; }
-        public bool secured { get; set; }
-        public object decision { get; set; }
-        public int loanType { get; set; }
-        public object cashFlowLimit { get; set; }
-        public object receivableLimit { get; set; }
+        public string OfferId { get; set; }
+        public object FacilityLimit { get; set; }
+        public object CreditLimit { get; set; }
+        public Commission Commission { get; set; }
+        public bool Secured { get; set; }
+        public object Decision { get; set; }
+        public int LoanType { get; set; }
+        public object CashFlowLimit { get; set; }
+        public object ReceivableLimit { get; set; }
     }
 }

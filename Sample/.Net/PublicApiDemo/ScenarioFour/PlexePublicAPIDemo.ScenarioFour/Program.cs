@@ -13,46 +13,52 @@ namespace PlexePublicAPIDemo.ScenarioFour
             Console.ReadLine();
         }
 
-
         private static void StartProcess()
         {
-            ApplicationService applicationService = new ApplicationService();
             CalculationService calculationService = new CalculationService();
             LoanService loanService = new LoanService();
-            ApplicationApprovalService applicationApprovalService = new ApplicationApprovalService();
 
             Console.WriteLine("WELCOME TO PLEXE API DEMO!!!!");
 
-            // Step1: LOGIN
-            UserDatas userData = Login();
-            var key = userData.value.token;
+            // Step 1: LOGIN
+            Console.WriteLine("Step 1: LOGIN !!!!");
+            UserData userData = Login();
+            var key = userData.Token;
 
             var applicationId = LoadApplicationId();
             var loanId = LoadLoanId();
 
-            // Step1: CALL APPLICATION-LOC - CALCULATION - SLIDER API
+            // Step 2: CalculateLOCSlider
+            Console.WriteLine("Step 2: CalculateLOCSlider !!!!");
             CalculateLOCSlider(calculationService, key, applicationId);
 
-            // Step2: CALL APPLICATION-LOC - CALCULATION - API
+            // Step 3: ApplicationLocCalculation
+            Console.WriteLine("Step 3: ApplicationLocCalculation !!!!");
             ApplicationLocCalculation(calculationService, key, applicationId);
 
-            // Step3: CALL MAKE - WITHDRAWAL - LINE - OF - CREDIT API
+            // Step 4: MakeWithdrawalLineOfCredit
+            Console.WriteLine("Step 4: MakeWithdrawalLineOfCredit !!!!");
             MakeWithdrawalLineOfCredit(loanService, key, loanId);
 
-            // Step4: Check whether to resend otp or not?
+            // Step 5: CheckResendOTPOption
+            Console.WriteLine("Step 5: CheckResendOTPOption !!!!");
             var resendOTP = CheckResendOTPOption();
 
-            // Step5: Call ResendWithdrawalOtp and fetch otp
+            // Step 6: ResendWithdrawalOtp
+            Console.WriteLine("Step 6: ResendWithdrawalOtp !!!!");
             if (resendOTP == "0")
             {
                 ResendWithdrawalOtp(loanService, key, loanId);
             }
 
+            // Step 7: ConfirmWithdrawalLineOfCredit
+            Console.WriteLine("Step 7: ConfirmWithdrawalLineOfCredit !!!!");
             ConfirmWithdrawalLineOfCredit(key, loanId);
+
             Console.ReadLine();
         }
 
-        private static UserDatas Login()
+        private static UserData Login()
         {
 
             Console.WriteLine("WRITE YOUR USERNAME:");
@@ -63,7 +69,7 @@ namespace PlexePublicAPIDemo.ScenarioFour
 
             AuthenticationService authenticationService = new AuthenticationService();
             WebhookService webhookService = new WebhookService();
-            UserDatas userdata = authenticationService.AuthenticateUser(username, password);
+            UserData userdata = authenticationService.AuthenticateUser(username, password);
 
             if (userdata == null)
             {

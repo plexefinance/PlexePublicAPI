@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PlexePublicAPIDemo.Common.Model
 {
     public class LoanBalanceResponse
-    {
-        public object contentType { get; set; }
-        public object serializerSettings { get; set; }
-        public object statusCode { get; set; }
-        public LoanBalanceResponseValue value { get; set; }
-    }
-
-    public class LoanBalanceResponseValue
     {
         public double? AvailableFunds
         {
@@ -44,7 +35,7 @@ namespace PlexePublicAPIDemo.Common.Model
 
         public double? TotalFundingRate { get; set; }
 
-        public bool? IsDifferent(LoanBalanceResponseValue external)
+        public bool? IsDifferent(LoanBalanceResponse external)
         {
             if (AvailableFunds != external.AvailableFunds)
             {

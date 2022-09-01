@@ -13,9 +13,9 @@ namespace PlexePublicAPIDemo.Common
         private readonly string BASE_URI = "https://apidemo.plexe.co/";
         private readonly string APPLICATION_URI = "api/Loan/";
 
-        public LoansResponse GetCustomerLoans(string key, string customerId)
+        public List<LoanResponse> GetCustomerLoans(string key, string customerId)
         {
-            LoansResponse customerLoans = new LoansResponse();
+            List<LoanResponse> customerLoans = new List<LoanResponse>();
             try
             {
                 var client = new RestClient(BASE_URI + APPLICATION_URI + "get-customer-loans/" + customerId + "");
@@ -25,7 +25,7 @@ namespace PlexePublicAPIDemo.Common
                 request.AddHeader("Authorization", "Bearer " + key + "");
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(Environment.NewLine + response.Content);
-                customerLoans = JsonConvert.DeserializeObject<LoansResponse>(response.Content);
+                customerLoans = JsonConvert.DeserializeObject<List<LoanResponse>>(response.Content);
                 return customerLoans;
             }
             catch (Exception ex)
@@ -122,10 +122,10 @@ namespace PlexePublicAPIDemo.Common
                 MakeWithdrawalLineOfCredit makeWithdrawalLineOfCredit = new MakeWithdrawalLineOfCredit()
                 {
                     calculation = new Calculation() {
-                        amount = 65,
-                        fixedRepaymentCalculation = false,
-                        percentOfIncome = 67,
-                        terms = 32
+                        Amount = 65,
+                        FixedRepaymentCalculation = false,
+                        PercentOfIncome = 67,
+                        Terms = 32
                     }
                 };
                 var client = new RestClient(BASE_URI + APPLICATION_URI + "make-withdrawal-line-of-credit/" + loanId + "");
@@ -171,23 +171,23 @@ namespace PlexePublicAPIDemo.Common
             {
                 ConfirmWithdrawalLineOfCreditModel confirmWithdrawalLineOfCreditModel = new ConfirmWithdrawalLineOfCreditModel()
                 {
-                    advanceRate =55,
-                    terms =44,
-                    amount =44,
-                    commission =new Commission() { 
-                     drawFee=33,
-                      trailing=4,
-                       upfrontFee=5
+                    AdvanceRate =55,
+                    Terms =44,
+                    Amount =44,
+                    Commission =new Commission() { 
+                     DrawFee=33,
+                      Trailing=4,
+                       UpfrontFee=5
                     },
-                    dateUTC = new DateTime(),
-                    fixedRepayment = 4,
-                    fixedRepaymentFee =5,
-                    nextRepaymentDate = new DateTime(),
-                    otp = Otp,
-                    percentageOfIncome =43,
-                    priority =true,
-                    totalRepaymentAmount =3,
-                    weeklyPayment=4
+                    DateUTC = new DateTime(),
+                    FixedRepayment = 4,
+                    FixedRepaymentFee =5,
+                    NextRepaymentDate = new DateTime(),
+                    Otp = Otp,
+                    PercentageOfIncome =43,
+                    Priority =true,
+                    TotalRepaymentAmount =3,
+                    WeeklyPayment=4
                 };
                 var client = new RestClient(BASE_URI + APPLICATION_URI + "confirm-withdrawal-line-of-credit/" + loanId + "");
                 var request = new RestRequest();

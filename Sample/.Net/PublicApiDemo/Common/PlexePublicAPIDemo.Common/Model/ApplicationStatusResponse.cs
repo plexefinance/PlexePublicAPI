@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlexePublicAPIDemo.Common.Model
+﻿namespace PlexePublicAPIDemo.Common.Model
 {
     public class ApplicationStatusResponse
-    {
-        public object contentType { get; set; }
-        public object serializerSettings { get; set; }
-        public object statusCode { get; set; }
-        public ApplicationStatusResponseValue value { get; set; }
-    }
-
-    public class ApplicationStatusResponseValue
     {
         public bool Draft { get; set; }
         public bool CustomerContacted { get; set; }

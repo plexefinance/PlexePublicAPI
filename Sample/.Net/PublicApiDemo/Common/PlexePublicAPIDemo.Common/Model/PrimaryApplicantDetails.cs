@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlexePublicAPIDemo.Common.Model
+﻿namespace PlexePublicAPIDemo.Common.Model
 {
     public class PrimaryApplicantDetails
     {
-        public bool isManuallyAdded { get; set; }
-        public string name { get; set; }
-        public DriversLicense driversLicense { get; set; }
-        public bool isPrimary { get; set; }
-        public string email { get; set; }
-        public string mobile { get; set; }
-        public string applicationId { get; set; }
-        public MiscellaneousData miscellaneousData { get; set; }
+        public bool IsManuallyAdded { get; set; }
+        public string Name { get; set; }
+        public DriversLicense DriversLicense { get; set; }
+        public bool IsPrimary { get; set; }
+        public string Email { get; set; }
+        public string Mobile { get; set; }
+        public string ApplicationId { get; set; }
+        public MiscellaneousData MiscellaneousData { get; set; }
     }
 }

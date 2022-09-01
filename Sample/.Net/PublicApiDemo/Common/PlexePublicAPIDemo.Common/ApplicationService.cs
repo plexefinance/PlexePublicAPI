@@ -75,44 +75,44 @@ namespace PlexePublicAPIDemo.Common
                 List<Acknowledgement> acknowledgements = new List<Acknowledgement>();
                 acknowledgements.Add(new Acknowledgement()
                 {
-                    acknowledgementCode = "acknowledgementCode1",
-                    acknowledged = true,
+                    AcknowledgementCode = "acknowledgementCode1",
+                    Acknowledged = true,
                 });
                 acknowledgements.Add(new Acknowledgement()
                 {
-                    acknowledgementCode = "acknowledgementCode2",
-                    acknowledged = true,
+                    AcknowledgementCode = "acknowledgementCode2",
+                    Acknowledged = true,
                 });
                 customerAndApplication.application = new Application()
                 {
-                    abn = "",
-                    acknowledgements = acknowledgements,
-                    acnNumber = "",
-                    acnType = "user",
-                    businessName = "test business 15",
-                    email = "testcustomer15@plexe.com.au",
-                    extraInformation = new ExtraInformation()
+                    Abn = "",
+                    Acknowledgements = acknowledgements,
+                    AcnNumber = "",
+                    AcnType = "user",
+                    BusinessName = "test business 15",
+                    Email = "testcustomer15@plexe.com.au",
+                    ExtraInformation = new ExtraInformation()
                     {
                         test = ""
                     },
-                    firstName = "Simon",
-                    lastName = "test15",
-                    mobile = "9999999999",
-                    partnerId = null,
-                    tradingName = "tradingName15"
+                    FirstName = "Simon",
+                    LastName = "test15",
+                    Mobile = "9999999999",
+                    PartnerId = null,
+                    TradingName = "tradingName15"
                 };
                 customerAndApplication.customer = new Customer()
                 {
-                    email = "testcustomer15@plexe.com.auit",
-                    firstName = "test",
-                    lastName = "test",
-                    mobileNumber = "999999999",
-                    businessName = "test15",
-                    tradingName = "test15",
-                    password = "DelightWAY12!@",
-                    type = "user",
-                    dateOfBirth = new DateTime(1975, 3, 7, 15, 0, 0, 41),
-                    hasLoggedIn = true
+                    Email = "testcustomer15@plexe.com.auit",
+                    FirstName = "test",
+                    LastName = "test",
+                    MobileNumber = "999999999",
+                    BusinessName = "test15",
+                    TradingName = "test15",
+                    Password = "DelightWAY12!@",
+                    Type = "user",
+                    DateOfBirth = new DateTime(1975, 3, 7, 15, 0, 0, 41),
+                    HasLoggedIn = true
                 };
 
                 var body = JsonConvert.SerializeObject(customerAndApplication);

@@ -7,7 +7,6 @@ namespace PlexePublicAPIDemo.Common.Model
 
     public class Value
     {
-        public string customerId { get; set; }
-        public string applicationId { get; set; }
+       
     }    
 }

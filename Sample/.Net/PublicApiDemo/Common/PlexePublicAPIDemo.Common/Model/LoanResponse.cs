@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PlexePublicAPIDemo.Common.Model
 {
-
     public class LoanResponse
-    {
-        public object contentType { get; set; }
-        public object serializerSettings { get; set; }
-        public object statusCode { get; set; }
-        public LoanResponseValue value { get; set; }
-    }
-    public class LoanResponseValue
     {
         public Commission Commission { get; set; }
         public string SalesPerson { get; set; }
@@ -54,6 +45,5 @@ namespace PlexePublicAPIDemo.Common.Model
         public Guid? OrganisationId { get; set; }
         public bool? EnabledDebtors { get; set; }
         public Guid Id { get; set; }
-
     }
 }

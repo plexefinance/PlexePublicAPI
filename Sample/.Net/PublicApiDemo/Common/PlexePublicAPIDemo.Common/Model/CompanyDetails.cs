@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlexePublicAPIDemo.Common.Model
-{
-    
+﻿namespace PlexePublicAPIDemo.Common.Model
+{    
     public class CompanyDetails
     {
-        public string businessName { get; set; }
-        public string entityType { get; set; }
-        public string zipCode { get; set; }
-        public string businessTaxId { get; set; }
-        public string city { get; set; }
+        public string BusinessName { get; set; }
+        public string EntityType { get; set; }
+        public string ZipCode { get; set; }
+        public string BusinessTaxId { get; set; }
+        public string City { get; set; }
     }
 }

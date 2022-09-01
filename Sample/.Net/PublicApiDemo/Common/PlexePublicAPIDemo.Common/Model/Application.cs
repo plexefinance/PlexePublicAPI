@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using System.Collections.Generic;
 namespace PlexePublicAPIDemo.Common.Model
 {
-
     public class Application
     {
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string mobile { get; set; }
-        public string email { get; set; }
-        public List<Acknowledgement> acknowledgements { get; set; }
-        public string abn { get; set; }
-        public string businessName { get; set; }
-        public string tradingName { get; set; }
-        public string partnerId { get; set; }
-        public string acnType { get; set; }
-        public string acnNumber { get; set; }
-        public ExtraInformation extraInformation { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Mobile { get; set; }
+        public string Email { get; set; }
+        public List<Acknowledgement> Acknowledgements { get; set; }
+        public string Abn { get; set; }
+        public string BusinessName { get; set; }
+        public string TradingName { get; set; }
+        public string PartnerId { get; set; }
+        public string AcnType { get; set; }
+        public string AcnNumber { get; set; }
+        public ExtraInformation ExtraInformation { get; set; }
     }
 }

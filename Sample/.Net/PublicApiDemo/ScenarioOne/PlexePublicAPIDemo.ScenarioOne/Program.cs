@@ -17,36 +17,46 @@ namespace PlexePublicAPIDemo.ScenarioOne
         {
             ApplicationService applicationService = new ApplicationService();
             WebhookService webhookService = new WebhookService();
+
+            Console.WriteLine("WELCOME TO PLEXE API DEMO !!!!");
+
             // Step 1: LOGIN
-            UserDatas userData = Login();
-            var key = userData.value.token;
+            Console.WriteLine("Step 1: LOGIN!!!!");
+            UserData userData = Login();
+            var key = userData.Token;
 
             // STEP 2: CreateCustomerAndApplication
+            Console.WriteLine("STEP 2: CreateCustomerAndApplication !!!!");
             var applicationAndCustomerCreateResponse = CreateCustomerAndApplication(applicationService, key);
 
             // Load application Id and customer Id
-            var applicationId = applicationAndCustomerCreateResponse.value.applicationId;
-            var customerId = applicationAndCustomerCreateResponse.value.customerId;
+            var applicationId = applicationAndCustomerCreateResponse.ApplicationId;
+            var customerId = applicationAndCustomerCreateResponse.CustomerId;
 
             // STEP 3: AddOrUpdateBankingData
+            Console.WriteLine("STEP 3: AddOrUpdateBankingData !!!!");
             AddOrUpdateBankingData(applicationService, key, applicationId);
 
             // STEP 4: ProcessApplication
+            Console.WriteLine("STEP 4: ProcessApplication !!!!");
             ProcessApplication(applicationService, key, applicationId);
 
-            // STEP 5 : Get application status or register webhook
+            // STEP 5 : GetApplicationStatusOrRegisterWebhook
+            Console.WriteLine("STEP 5 : GetApplicationStatusOrRegisterWebhook !!!!");
             GetApplicationStatusOrRegisterWebhook(applicationService, webhookService, key, applicationId, customerId);
 
-            // STEP 6 GetApplication By ApplicationId
+            // STEP 6 GetApplicationById
+            Console.WriteLine("STEP 6 GetApplicationById !!!!");
             ApplicationResponse applicationResponse = GetApplicationById(applicationService, key, applicationId);
 
-            // STEP 7: Fetch Application offer
+            // STEP 7: GetApplicationOffer
+            Console.WriteLine("STEP 7: GetApplicationOffer !!!!");
             GetApplicationOffer(applicationService, key, applicationResponse, applicationId);
 
             Console.ReadLine();
         }
 
-        private static UserDatas Login()
+        private static UserData Login()
         {
 
             Console.WriteLine("WRITE YOUR USERNAME:");
@@ -57,7 +67,7 @@ namespace PlexePublicAPIDemo.ScenarioOne
 
             AuthenticationService authenticationService = new AuthenticationService();
 
-            UserDatas userdata = authenticationService.AuthenticateUser(username, password);
+            UserData userdata = authenticationService.AuthenticateUser(username, password);
 
             if (userdata == null)
             {
@@ -167,7 +177,7 @@ namespace PlexePublicAPIDemo.ScenarioOne
 
         private static void GetApplicationOffer(ApplicationService applicationService, string key, ApplicationResponse applicationResponse, string applicationId)
         {
-            if (applicationResponse.value.statusName.ToLower().Trim() == "offerready")
+            if (applicationResponse.StatusName.ToLower().Trim() == "offerready")
             {
                 ApplicationOffer applicationOffer = applicationService.GetApplicationOffer(key, applicationId);
                 if (applicationOffer == null)

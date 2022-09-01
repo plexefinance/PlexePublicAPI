@@ -12,9 +12,9 @@ namespace PlexePublicAPIDemo.Common
     {
         private readonly string BASE_URI = "https://apidemo.plexe.co/";
         private readonly string APPLICATION_URI = "api/Authenication/";
-        public UserDatas AuthenticateUser(string username, string password)
+        public UserData AuthenticateUser(string username, string password)
         {
-            UserDatas userDatas = new UserDatas();
+            UserData userDatas = new UserData();
             userDatas = null;
             try
             {
@@ -23,7 +23,7 @@ namespace PlexePublicAPIDemo.Common
                 request.Method = Method.Get;
                 request.AddHeader("Accept", "application/json");
                 RestResponse response = client.Execute(request);
-                userDatas = JsonConvert.DeserializeObject<UserDatas>(response.Content);
+                userDatas = JsonConvert.DeserializeObject<UserData>(response.Content);
                 return userDatas;
             }
             catch (Exception ex)

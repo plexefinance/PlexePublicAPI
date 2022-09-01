@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlexePublicAPIDemo.Common.Model
+﻿namespace PlexePublicAPIDemo.Common.Model
 {
     public class ApplicationCommission
     {
-        public double? upfrontFee { get; set; }
-        public double? trailing { get; set; }
-        public double? drawFee { get; set; }
+        public double? UpfrontFee { get; set; }
+        public double? Trailing { get; set; }
+        public double? DrawFee { get; set; }
     }
 }

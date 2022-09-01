@@ -19,11 +19,11 @@ namespace PlexePublicAPIDemo.Common
             {
                 CompanyDetails companyDetails = new CompanyDetails()
                 {
-                    businessName = "business Name",
-                    businessTaxId = "businessTaxId",
-                    city = "city",
-                    entityType = "entityType",
-                    zipCode = "zipCode"
+                    BusinessName = "business Name",
+                    BusinessTaxId = "businessTaxId",
+                    City = "city",
+                    EntityType = "entityType",
+                    ZipCode = "zipCode"
                 };
                 var client = new RestClient(BASE_URI + APPLICATION_URI + "add-company-details/" + applicationId + "");
 
@@ -49,29 +49,29 @@ namespace PlexePublicAPIDemo.Common
             {
                 PrimaryApplicantDetails primaryApplicantDetails = new PrimaryApplicantDetails()
                 {
-                    applicationId = applicationId,
-                    driversLicense = new DriversLicense()
+                    ApplicationId = applicationId,
+                    DriversLicense = new DriversLicense()
                     {
-                        name = "simon",
-                        address = "address",
-                        cardNumber = "92883783838",
-                        city = "city",
-                        dateOfBirth = new DateTime(),
-                        expiryDate = new DateTime(),
-                        image = "image",
-                        issuingState = "state"
+                        Name = "simon",
+                        Address = "address",
+                        CardNumber = "92883783838",
+                        City = "city",
+                        DateOfBirth = new DateTime(),
+                        ExpiryDate = new DateTime(),
+                        Image = "image",
+                        IssuingState = "state"
                     },
-                    email = "simon@cuce.co.au",
-                    isManuallyAdded = false,
-                    isPrimary = true,
-                    miscellaneousData = new MiscellaneousData()
+                    Email = "simon@cuce.co.au",
+                    IsManuallyAdded = false,
+                    IsPrimary = true,
+                    MiscellaneousData = new MiscellaneousData()
                     {
                         est5d = "",
                         pariatur_2 = "",
                         Ute1 = ""
                     },
-                    mobile = "9999999999",
-                    name = "simon"
+                    Mobile = "9999999999",
+                    Name = "simon"
 
                 };
                 var client = new RestClient(BASE_URI + APPLICATION_URI + "add-primary-applicant-details/" + applicationId + "");
@@ -92,9 +92,9 @@ namespace PlexePublicAPIDemo.Common
                 return false;
             }
         }
-        public BankDetail GetAllBanks(string key)
+        public List<BankDetail> GetAllBanks(string key)
         {
-            BankDetail bankDetail = new BankDetail();
+            List<BankDetail> bankDetail = new List<BankDetail>();
             try
             {
                 var client = new RestClient(BASE_URI + APPLICATION_URI + "get-all-banks");
@@ -104,7 +104,7 @@ namespace PlexePublicAPIDemo.Common
                 request.AddHeader("Authorization", "Bearer " + key + "");
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(Environment.NewLine + response.Content);
-                bankDetail = JsonConvert.DeserializeObject<BankDetail>(response.Content);
+                bankDetail = JsonConvert.DeserializeObject<List<BankDetail>>(response.Content);
                 return bankDetail;
             }
             catch (Exception ex)
@@ -118,19 +118,19 @@ namespace PlexePublicAPIDemo.Common
             {
                 SelectBankRequest selectBankRequest = new SelectBankRequest()
                 {
-                    accountHolder = "accountHolder",
-                    accountId = "accountId",
-                    accountNumber = "accountNumber",
-                    accountType = "accountType",
-                    archived =false,
-                    available = "",
-                    balance = "73",
-                    bsb = "bsb",
-                    enabled = true,
-                    id = "",
-                    name = "name",
-                    selected = true,
-                    slug = "slug",
+                    AccountHolder = "accountHolder",
+                    AccountId = "accountId",
+                    AccountNumber = "accountNumber",
+                    AccountType = "accountType",
+                    Archived =false,
+                    Available = "",
+                    Balance = "73",
+                    Bsb = "bsb",
+                    Enabled = true,
+                    Id = "",
+                    Name = "name",
+                    Selected = true,
+                    Slug = "slug",
                 };
                 var client = new RestClient(BASE_URI + APPLICATION_URI + "set-primary-bank/" + applicationId + "");
                 var request = new RestRequest();
@@ -149,9 +149,9 @@ namespace PlexePublicAPIDemo.Common
                 return false;
             }
         }
-        public ContractDocumentResponse GetContracts(string key, string applicationId)
+        public List<ContractDocumentResponse> GetContracts(string key, string applicationId)
         {
-            ContractDocumentResponse contracts = new ContractDocumentResponse();
+            List<ContractDocumentResponse> contracts = new List<ContractDocumentResponse>();
             try
             {
                 var client = new RestClient(BASE_URI + APPLICATION_URI + "get-contracts/" + applicationId + "");
@@ -161,7 +161,7 @@ namespace PlexePublicAPIDemo.Common
                 request.AddHeader("Authorization", "Bearer " + key + "");
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(Environment.NewLine + response.Content);
-                contracts = JsonConvert.DeserializeObject<ContractDocumentResponse>(response.Content);
+                contracts = JsonConvert.DeserializeObject<List<ContractDocumentResponse>>(response.Content);
                 return contracts;
             }
             catch (Exception ex)
@@ -203,11 +203,11 @@ namespace PlexePublicAPIDemo.Common
 
                 ContractSign contractSign = new ContractSign()
                 {
-                    ipAddress = "",
-                    mimeType = "",
-                    secondaryApplicant = true,
-                    signature = "",
-                    signature2 = ""
+                    IpAddress = "",
+                    MimeType = "",
+                    SecondaryApplicant = true,
+                    Signature = "",
+                    Signature2 = ""
                 };
                 var body = JsonConvert.SerializeObject(contractSign);
                 request.AddParameter("application/json", body, ParameterType.RequestBody);

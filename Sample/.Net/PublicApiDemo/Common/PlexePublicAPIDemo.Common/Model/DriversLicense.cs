@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace PlexePublicAPIDemo.Common.Model
 {
     public class DriversLicense
     {
-        public string issuingState { get; set; }
-        public string cardNumber { get; set; }
-        public DateTime expiryDate { get; set; }
-        public string name { get; set; }
-        public string address { get; set; }
-        public DateTime dateOfBirth { get; set; }
-        public string image { get; set; }
-        public string city { get; set; }
+        public string IssuingState { get; set; }
+        public string CardNumber { get; set; }
+        public DateTime ExpiryDate { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string Image { get; set; }
+        public string City { get; set; }
     }
 }

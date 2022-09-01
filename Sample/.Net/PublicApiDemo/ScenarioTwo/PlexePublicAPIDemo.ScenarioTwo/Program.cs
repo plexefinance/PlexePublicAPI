@@ -15,34 +15,51 @@ namespace PlexePublicAPIDemo.ScenarioTwo
 
         private static void StartProcess()
         {
-            AuthenticationService authenticationService = new AuthenticationService();
-            WebhookService webhookService = new WebhookService();
-            ApplicationService applicationService = new ApplicationService();
             ApplicationApprovalService applicationApprovalService = new ApplicationApprovalService();
 
-            Console.WriteLine("WELCOME TO PLEXE API DEMO!!!!");
+            Console.WriteLine("WELCOME TO PLEXE API DEMO !!!!");
 
-            // Step1: LOGIN
-            UserDatas userData = Login();
-            var key = userData.value.token;
+            // Step 1: LOGIN
+            Console.WriteLine("Step 1: LOGIN !!!!");
+            UserData userData = Login();
+            var key = userData.Token;
             var applicationId = LoadApplicationId();
 
+            // Step 2: AddCompanyDetails
+            Console.WriteLine("Step 2: AddCompanyDetails !!!!");
             AddCompanyDetails(applicationApprovalService, key, applicationId);
 
+            // Step 3: AddPrimaryApplicantDetails
+            Console.WriteLine("Step 3: AddPrimaryApplicantDetails !!!!");
             AddPrimaryApplicantDetails(applicationApprovalService, key, applicationId);
 
+            // Step 4: GetAllBanks
+            Console.WriteLine("Step 4: GetAllBanks !!!!");
             GetAllBanks(applicationApprovalService, key);
 
+            // Step 5: SetPrimaryBankAccount
+            Console.WriteLine("Step 5: SetPrimaryBankAccount !!!!");
             SetPrimaryBankAccount(applicationApprovalService, key, applicationId);
 
+            // Step 6: GetContracts
+            Console.WriteLine("Step 6: GetContracts !!!!");
             GetContracts(applicationApprovalService, key, applicationId);
 
             var applicantId = LoadApplicantId();
+
+            // Step 7: SignContracts
+            Console.WriteLine("Step 7: SignContracts !!!!");
             SignContracts(applicationApprovalService, key, applicationId, applicantId);
 
+            // Step 8: GetRequiredDocuments
+            Console.WriteLine("Step 8: GetRequiredDocuments !!!!");
             GetRequiredDocuments(applicationApprovalService, key, applicationId);
 
+            // Step 9: SubmitRequiredDocuments
+            Console.WriteLine("Step 9: SubmitRequiredDocuments !!!!");
             SubmitRequiredDocuments(applicationApprovalService, key, applicationId);
+
+            Console.ReadLine();
         }
 
         private static void SignContracts(ApplicationApprovalService applicationApprovalService, string key, string applicationId, string applicantId)
@@ -61,7 +78,7 @@ namespace PlexePublicAPIDemo.ScenarioTwo
         {
             Console.WriteLine("CALL GET-REQUIRED - DOCUMENTS TO GET THE DETAILS OF THE REQUIRED DOCUMENTS!!!");
             var requiredDocuments = applicationApprovalService.GetRequiredDocuments(key, applicationId);
-            if (!(requiredDocuments != null && requiredDocuments.value != null && requiredDocuments.value.totalCount > 0))
+            if (!(requiredDocuments != null && requiredDocuments.TotalCount > 0))
             {
                 Console.WriteLine("ERROR IN GET-REQUIRED - DOCUMENTS!!!");
                 Environment.Exit(0);
@@ -111,7 +128,7 @@ namespace PlexePublicAPIDemo.ScenarioTwo
         {
             Console.WriteLine("CALL GET-ALL - BANKS API.THIS WILL RETURN ALL BANKS TO THE PRIMARY CAN BE SELECTED !!!");
             var allBanks = applicationApprovalService.GetAllBanks(key);
-            if (!(allBanks != null && allBanks.value != null && allBanks.value.Count > 0))
+            if (!(allBanks != null && allBanks.Count > 0))
             {
                 Console.WriteLine("ERROR IN GET-ALL - BANKS!!!");
                 Environment.Exit(0);
@@ -136,7 +153,7 @@ namespace PlexePublicAPIDemo.ScenarioTwo
         {
             Console.WriteLine("CALL GET-CONTRACTS TO GET THE CONTRACT DETAILS THAT MUST BE DISPLAYED TO THE CUSTOMER !!!");
             var contracts = applicationApprovalService.GetContracts(key, applicationId);
-            if (!(contracts != null && contracts.value != null && contracts.value.Count > 0))
+            if (!(contracts != null && contracts.Count > 0))
             {
                 Console.WriteLine("ERROR IN GET-CONTRACTS!!!");
                 Environment.Exit(0);
@@ -145,7 +162,7 @@ namespace PlexePublicAPIDemo.ScenarioTwo
             Console.WriteLine("BELOW IS CONTRACTS FETCHED:");
             Console.WriteLine(JsonConvert.SerializeObject(contracts));
         }
-        private static UserDatas Login()
+        private static UserData Login()
         {
 
             Console.WriteLine("WRITE YOUR USERNAME:");
@@ -156,7 +173,7 @@ namespace PlexePublicAPIDemo.ScenarioTwo
 
             AuthenticationService authenticationService = new AuthenticationService();
             WebhookService webhookService = new WebhookService();
-            UserDatas userdata = authenticationService.AuthenticateUser(username, password);
+            UserData userdata = authenticationService.AuthenticateUser(username, password);
 
             if (userdata == null)
             {

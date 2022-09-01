@@ -15,27 +15,36 @@ namespace PlexePublicAPIDemo.ScenarioThree
 
         private static void StartProcess()
         {
-            ApplicationService applicationService = new ApplicationService();
             LoanService loanService = new LoanService();
-            ApplicationApprovalService applicationApprovalService = new ApplicationApprovalService();
 
-            Console.WriteLine("WELCOME TO PLEXE API DEMO!!!!");
+            Console.WriteLine("WELCOME TO PLEXE API DEMO !!!!");
 
-            // Step1: LOGIN
-            UserDatas userData = Login();
-            var key = userData.value.token;
+            // Step 1: LOGIN
+            Console.WriteLine("Step 1: LOGIN !!!!");
+            UserData userData = Login();
+            var key = userData.Token;
 
             var customerId = LoadCustomerId();
             var loanId = LoadLoanId();
 
+            // Step 2: GetCustomerLoans
+            Console.WriteLine("Step 2: GetCustomerLoans !!!!");
             GetCustomerLoans(loanService, key, customerId);
 
+            // Step 3: GetLoan
+            Console.WriteLine("Step 3: GetLoan !!!!");
             GetLoan(loanService, key, loanId);
 
+            // Step 4: GetTransactions
+            Console.WriteLine("Step 4: GetTransactions !!!!");
             GetTransactions(loanService, key, loanId);
 
+            // Step 5: GetWithdrawals
+            Console.WriteLine("Step 5: GetWithdrawals !!!!");
             GetWithdrawals(loanService, key, loanId);
 
+            // Step 6: GetTotalBalance
+            Console.WriteLine("Step 6: GetTotalBalance !!!!");
             GetTotalBalance(loanService, key, loanId);
 
             Console.ReadLine();
@@ -58,7 +67,7 @@ namespace PlexePublicAPIDemo.ScenarioThree
         {
             Console.WriteLine("CALL GET-TRANSACTIONS API.THIS WILL RETURN ALL TRANSACTIONS!!!");
             var transactions = loanService.GetTransactions(key, loanId);
-            if (!(transactions != null && transactions.value != null))
+            if (!(transactions != null))
             {
                 Console.WriteLine("ERROR IN GET-TRANSACTIONS!!!");
                 Environment.Exit(0);
@@ -71,7 +80,7 @@ namespace PlexePublicAPIDemo.ScenarioThree
         {
             Console.WriteLine("CALL GET-WITHDRAWALS API TO GET ALL WITHDRAWALS!!!");
             var withdrawals = loanService.GetWithdrawals(key, loanId);
-            if (!(withdrawals != null && withdrawals.value.TotalCount > 0))
+            if (!(withdrawals != null && withdrawals.TotalCount > 0))
             {
                 Console.WriteLine("ERROR IN GET-WITHDRAWALS!!!");
                 Environment.Exit(0);
@@ -97,7 +106,7 @@ namespace PlexePublicAPIDemo.ScenarioThree
         {
             Console.WriteLine("CALL GET-CUSTOMER - LOANS API.THIS WILL RETURN THE LIST OF LOANS FOR A CUSTOMER !!!");
             var customerLoans = loanService.GetCustomerLoans(key, customerId);
-            if (!(customerLoans != null && customerLoans.value.Count > 0))
+            if (!(customerLoans != null && customerLoans.Count > 0))
             {
                 Console.WriteLine("ERROR IN GET-CUSTOMER - LOANS!!!");
                 Environment.Exit(0);
@@ -121,7 +130,7 @@ namespace PlexePublicAPIDemo.ScenarioThree
             return customerId;
         }
 
-        private static UserDatas Login()
+        private static UserData Login()
         {
 
             Console.WriteLine("WRITE YOUR USERNAME:");
@@ -132,7 +141,7 @@ namespace PlexePublicAPIDemo.ScenarioThree
 
             AuthenticationService authenticationService = new AuthenticationService();
             WebhookService webhookService = new WebhookService();
-            UserDatas userdata = authenticationService.AuthenticateUser(username, password);
+            UserData userdata = authenticationService.AuthenticateUser(username, password);
 
             if (userdata == null)
             {

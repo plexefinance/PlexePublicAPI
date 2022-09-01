@@ -1,28 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlexePublicAPIDemo.Common.Model
+﻿namespace PlexePublicAPIDemo.Common.Model
 {
     public class ApplicationLocCalculation
     {
-        public object contentType { get; set; }
-        public object serializerSettings { get; set; }
-        public object statusCode { get; set; }
-        public ApplicationLocCalculationValue value { get; set; }
-        
-
-        public class ApplicationLocCalculationValue
-        {
-            public double advanceRate { get; set; }
-            public double totalRepayment { get; set; }
-            public double repayment { get; set; }
-            public double advanceFee { get; set; }
-            public int weeks { get; set; }
-            public double amount { get; set; }
-            public double percentOfIncome { get; set; }
-            public int terms { get; set; }
-            public bool fixedRepaymentCalculation { get; set; }
-        }
+        public double AdvanceRate { get; set; }
+        public double TotalRepayment { get; set; }
+        public double Repayment { get; set; }
+        public double AdvanceFee { get; set; }
+        public int Weeks { get; set; }
+        public double Amount { get; set; }
+        public double PercentOfIncome { get; set; }
+        public int Terms { get; set; }
+        public bool FixedRepaymentCalculation { get; set; }
     }
 }

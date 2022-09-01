@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using System.Collections.Generic;
 namespace PlexePublicAPIDemo.Common.Model
-{
-    
-
+{ 
     public class BankAccountRequest
     {
         public string AvailableBalance { get; set; }

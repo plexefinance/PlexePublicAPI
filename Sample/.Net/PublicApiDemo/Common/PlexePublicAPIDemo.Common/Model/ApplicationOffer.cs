@@ -6,9 +6,14 @@ namespace PlexePublicAPIDemo.Common.Model
 {
     public class ApplicationOffer
     {
-        public object contentType { get; set; }
-        public object serializerSettings { get; set; }
-        public object statusCode { get; set; }
-        public OfferValue value { get; set; }
+        public string OfferId { get; set; }
+        public object FacilityLimit { get; set; }
+        public object CreditLimit { get; set; }
+        public Commission Commission { get; set; }
+        public bool Secured { get; set; }
+        public object Decision { get; set; }
+        public int LoanType { get; set; }
+        public object CashFlowLimit { get; set; }
+        public object ReceivableLimit { get; set; }
     }
 }
