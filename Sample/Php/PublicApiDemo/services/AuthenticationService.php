@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\Request;
   
 class AuthenticationService
 {
-    private $BASE_URI = "http://localhost:5002/";
+    private $BASE_URI = "https://apidemo.plexe.co/";
     private $APPLICATION_URI ="api/Authenication/";
 
     function StatusCodeHandling($e)

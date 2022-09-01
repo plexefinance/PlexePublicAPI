@@ -49,9 +49,8 @@
           </div>
           <div class="col-md-9" style="border: 2px solid lightblue;overflow:auto; max-height:800px;">
             <?php
-            include('./services/service.php');
+            include('./services/scenarios/first-scenario.service.php');
             if (isset($_POST['button1'])) {
-              echo "</br>";
               if (!isset($_POST['username'])) {
                 $appService -> writeErrorMessage("USERNAME IS REQUIRED!!!");
               }
@@ -84,28 +83,26 @@
                 $appService -> writeMessage("<b>STEP 1: Logging into application and fetch token!!!</b>");
                 $result = $appService -> AuthenticateUser($apiUsername, $apiPassword);
                 $key = $result -> token;
-                $customerId = '7a2f7619-c4d0-408e-90a8-58cce05bec4b';
-                $loanId = 'cb6a2b66-bf78-446f-99cf-c35af58930ff';
 
                 // STEP 2: Get Customer Loans
                 $appService -> writeMessage("<b>STEP 2: Get Customer Loans!!!</b>");
-                $appService -> GetCustomerLoans($key, $customerId);
+                $thirdScenarioService -> GetCustomerLoans($key, $customerId);
 
                 // STEP 3: Get Loan
                 $appService -> writeMessage("<b>STEP 3: Get Loan!!!</b>");
-                $appService -> GetLoan($key, $loanId);
+                $thirdScenarioService -> GetLoan($key, $loanId);
 
                 // STEP 4: Get Transactions
                 $appService -> writeMessage("<b>STEP 4: Get Transactions!!!</b>");
-                $appService -> GetTransactions($key, $loanId);
+                $thirdScenarioService -> GetTransactions($key, $loanId);
 
                 // STEP 5: Get Withdrawals
                 $appService -> writeMessage("<b>STEP 5: Get Withdrawals!!!</b>");
-                $appService -> GetWithdrawals($key, $loanId);
+                $thirdScenarioService -> GetWithdrawals($key, $loanId);
 
                 // STEP 6: Get Total Balance
                 $appService -> writeMessage("<b>STEP 6: Get Total Balance!!!</b>");
-                $appService -> GetTotalBalance($key, $loanId);
+                $thirdScenarioService -> GetTotalBalance($key, $loanId);
 
               }
             }

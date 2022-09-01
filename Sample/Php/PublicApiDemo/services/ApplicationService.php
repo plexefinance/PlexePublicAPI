@@ -6,7 +6,7 @@ use GuzzleHttp\Psr7\Request;
 
 class ApplicationService
 {
-    private $BASE_URI = "http://localhost:5002/";
+    private $BASE_URI = "https://apidemo.plexe.co/";
     private $APPLICATION_URI = "api/Application/";
 
     function StatusCodeHandling($e)

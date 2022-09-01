@@ -66,9 +66,8 @@
           </div>
           <div class="col-md-9" style="border: 2px solid lightblue;overflow:auto; max-height:800px;">
             <?php
-            include('./services/service.php');
+            include('./services/scenarios/first-scenario.service.php');
             if (isset($_POST['button1'])) {
-              echo "</br>";
               if (!isset($_POST['username'])) {
                 $appService -> writeErrorMessage("USERNAME IS REQUIRED!!!");
               }
@@ -103,32 +102,30 @@
                 $appService -> writeMessage("<b>STEP 1: Logging into application and fetch token!!!</b>");
                 $result = $appService -> AuthenticateUser($apiUsername, $apiPassword);
                 $key = $result -> token;
-               
-                $appService -> writeMessage($resendOTP);
+                
                 // STEP 2: Calculate LOC Slider
                 $appService -> writeMessage("<b>STEP 2: CALCULATE LOC SLIDER!!!</b>");
-                //$appService -> CalculateLOCSlider($key, $applicationId);
+                $fourthScenarioService -> CalculateLOCSlider($key, $applicationId);
 
                 // STEP 3: Application Loc Calculation
                 $appService -> writeMessage("<b>STEP 3: APPLICATION LOC CALCULATION!!!</b>");
-                //$appService -> ApplicationLocCalculation($key, $applicationId);
+                $fourthScenarioService -> ApplicationLocCalculation($key, $applicationId);
 
                 // Step 4: Make Withdrawal Line Of Credit
                 $appService -> writeMessage("<b>STEP 4: MAKE WITHDRAWAL LINE OF CREDIT!!!</b>");
-                //$appService -> MakeWithdrawalLineOfCredit($key, $loanId);
+                $fourthScenarioService -> MakeWithdrawalLineOfCredit($key, $loanId);
 
                 // Step 5: Call ResendWithdrawalOtp and fetch otp
                 if ($resendOTP == "1")
                 {
                     // Step 5: Resend Withdrawal Otp
-                    //$appService -> writeMessage("<b>STEP 5: RESEND WITHDRAWAL OTP!!!</b>");
-                    //$otp = $appService -> ResendWithdrawalOtp($key, $loanId);
+                    $appService -> writeMessage("<b>STEP 5: RESEND WITHDRAWAL OTP!!!</b>");
+                    $otp = $fourthScenarioService -> ResendWithdrawalOtp($key, $loanId);
                 }
-                 
-                $appService -> writeMessage("FINAL OTP:".$otp);
+                
                 // Step 6: Confirm Withdrawal Line Of Credit
                 $appService -> writeMessage("<b>STEP 6: CONFIRM WITHDRAWAL LINE OF CREDIT!!!</b>");
-                //$appService -> ConfirmWithdrawalLineOfCredit($key, $loanId, $otp);
+                $fourthScenarioService -> ConfirmWithdrawalLineOfCredit($key, $loanId, $otp);
 
               }
             }

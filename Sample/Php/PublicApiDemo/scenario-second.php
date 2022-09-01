@@ -46,9 +46,9 @@
           </div>
           <div class="col-md-9" style="border: 2px solid lightblue;overflow:auto; max-height:800px;">
             <?php
-            include('./services/service.php');
+            include('./services/scenarios/first-scenario.service.php');
             if (isset($_POST['button1'])) {
-              echo "</br>";
+              
               if (!isset($_POST['username'])) {
                 $appService -> writeErrorMessage("USERNAME IS REQUIRED!!!");
               }
@@ -81,41 +81,38 @@
                 $appService -> writeMessage("<b>STEP 1: LOGGING INTO APPLICATION AND FETCH TOKEN!!!</b>");
                 $result = $appService -> AuthenticateUser($apiUsername, $apiPassword);
                 $key = $result -> token;
-                $applicationId = '6690b0c2-6f86-4e62-a440-01a74abe7c8f';
-                $applicantId = '7a2f7619-c4d0-408e-90a8-58cce05bec4b';
                 
-	
                 // STEP 2: Add Company Details
                 $appService -> writeMessage("<b>STEP 2: Add Company Details!!!</b>");
-                //$appService -> AddCompanyDetails($key, $applicationId);
+                $secondScenarioService -> AddCompanyDetails($key, $applicationId);
 
                 // STEP 3: Add Primary Applicant Details
                 $appService -> writeMessage("<b>STEP 3: Add Primary Applicant Details!!!</b>");
-                //$appService -> AddPrimaryApplicantDetails($key, $applicationId);
+                $secondScenarioService -> AddPrimaryApplicantDetails($key, $applicationId);
                 
                 // STEP 4: Get All Banks
                 $appService -> writeMessage("<b>STEP 4: Get All Banks!!!</b>");
-                //$appService -> GetAllBanks($key);
+                $secondScenarioService -> GetAllBanks($key);
 
                 // STEP 5: Set Primary Bank Account
                 $appService -> writeMessage("<b>STEP 5: Set Primary Bank Account!!!</b>");
-                //$appService -> SetPrimaryBankAccount($key, $applicationId);
+                $secondScenarioService -> SetPrimaryBankAccount($key, $applicationId);
 
                 // STEP 6: Get Contracts
                 $appService -> writeMessage("<b>STEP 6: Get Contracts!!!</b>");
-                //$appService -> GetContracts($key, $applicationId);
+                $secondScenarioService -> GetContracts($key, $applicationId);
                 
                 // STEP 7: Sign Contracts
                 $appService -> writeMessage("<b>STEP 7: Sign Contracts!!!</b>");
-                //$appService -> SignContracts($key, $applicationId, $applicantId);
+                $secondScenarioService -> SignContracts($key, $applicationId, $applicantId);
 
                 // STEP 8: Get Required Documents
                 $appService -> writeMessage("<b>STEP 8: Get Required Documents!!!</b>");
-                //$appService -> GetRequiredDocuments($key, $applicationId);
+                $secondScenarioService -> GetRequiredDocuments($key, $applicationId);
 
                 // STEP 9: Submit Required Documents
                 $appService -> writeMessage("<b>STEP 9: Submit Required Documents!!!</b>");
-                $appService -> SubmitRequiredDocuments($key, $applicationId);
+                $secondScenarioService -> SubmitRequiredDocuments($key, $applicationId);
               }
             }
             ?>

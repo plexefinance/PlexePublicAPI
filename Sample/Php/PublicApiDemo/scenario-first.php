@@ -57,7 +57,7 @@
           </div>
           <div class="col-md-9" style="border: 2px solid lightblue;overflow:auto; max-height:800px;">
             <?php
-            include('./services/service.php');
+            include('./services/scenarios/first-scenario.service.php');
             if (isset($_POST['button1'])) {
               if (!isset($_POST['username'])) {
                 $appService -> writeErrorMessage("USERNAME IS REQUIRED!!!");
@@ -89,9 +89,6 @@
                 $selectedOption = $_POST['selectedOption'];
 
                 $appService -> writeMessage("USERNAME IS: ".$apiUsername."");
-
-                //$applicationId = '0b124aa4-2c33-430f-9d82-d1ff0e1d60c4';
-                //$customerId = 'ef06c751-0ff7-4d0c-bc6f-72c2dc760554';
                 
                 // Step 1: Logging into application and fetch token.
                 $appService -> writeMessage("<b>STEP 1: LOGGING TO APPLICATION!!!</b>");
@@ -100,34 +97,34 @@
 
                 // STEP 2: CreateCustomerAndApplication
                 $appService -> writeMessage("<b>STEP 2: CREATE CUSTOMER AND APPLICATION!!!</b>");
-                //$applicationAndCustomerCreateResponse = $appService -> CreateCustomerAndApplication($key);
+                $applicationAndCustomerCreateResponse = $firstScenarioService -> CreateCustomerAndApplication($key);
 
                 // Load application Id and customer Id
-                $applicationId = 'c9b8f9a5-0a27-4f2f-ad58-efae098f321e';//$applicationAndCustomerCreateResponse -> applicationId;
-		        $customerId = 'ef06c751-0ff7-4d0c-bc6f-72c2dc760554';// $applicationAndCustomerCreateResponse -> customerId;
+                $applicationId = $applicationAndCustomerCreateResponse -> applicationId;
+		        $customerId = $applicationAndCustomerCreateResponse -> customerId;
+
                 $appService -> writeMessage("ApplicationId: ".$applicationId."");
                 $appService -> writeMessage("CustomerId: ".$customerId."");
                 
                 // STEP 3: AddOrUpdateBankingData                
                 $appService -> writeMessage("<b>STEP 3: Add Or Update Banking Data !!!</b>");                
-                //$appService -> AddOrUpdateBankingData($key, $applicationId, $bankName);
+                $firstScenarioService -> AddOrUpdateBankingData($key, $applicationId, $bankName);
 
                 // STEP 4: ProcessApplication  
                 $appService -> writeMessage("<b>STEP 4: ProcessApplication !!!</b>");  
-                //$appService -> ProcessApplication($key, $applicationId, $currentProcess);
+                $firstScenarioService -> ProcessApplication($key, $applicationId, $currentProcess);
 
                 // STEP 5 : Get application status or register webhook
                 $appService -> writeMessage("<b>STEP 5: GET APPLICATION STATUS OR REGISTER WEBHOOK !!!</b>");  
-                $appService -> GetApplicationStatusOrRegisterWebhook($key, $applicationId, $customerId, $selectedOption);
+                $firstScenarioService -> GetApplicationStatusOrRegisterWebhook($key, $applicationId, $customerId, $selectedOption);
 
                 //STEP 6 GetApplication By ApplicationId
                 $appService -> writeMessage("<b>STEP 6: Get APPLICATION BY ID !!!</b>");  
-                $applicationResponse = $appService -> GetApplicationById($key, $applicationId);
+                $applicationResponse = $firstScenarioService -> GetApplicationById($key, $applicationId);
                    
                 // STEP 7: Fetch Application offer
                 $appService -> writeMessage("<b>STEP 7: Get Application Offer !!!</b>");  
-                $appService -> GetApplicationOffer($applicationResponse, $key, $applicationId); 
-                
+                $firstScenarioService -> GetApplicationOffer($applicationResponse, $key, $applicationId);                
               }
             }
             ?>
