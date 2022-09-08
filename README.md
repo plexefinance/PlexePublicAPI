@@ -63,10 +63,11 @@ This API call does not require authentication.
 The required inputs are
  
     {
-		"username": "string", (email address)
-		"name": "string", (fullname)
-		"password": "string", (at least 6 char, 1 Upper, 1 number and 1 special char)
-		"number": "string" (cell phone number)
+		"email": "string", (email address) (required)
+		"firstName": "string", (firstName) (required)
+		"lastName": "string", (lastName)  (required)
+		"password": "string", (at least 6 char, 1 Upper, 1 number and 1 special char) (required)
+		"number": "string" (cell phone number) (required)
 	}
 
 
@@ -75,13 +76,16 @@ The return type is a Guid which is the customer's unquie ID
 ## Create An Application
 
 To create an Appplication you will need to call the Create Application API, and pass in
-
-
+  
 	{
-		"partnerId": "string", (optional Guid id of the partner)
-		"customerId": "string", (Guid of customer id)
-		"yearsInBusiness": 0, (years in business)
-		"industry": "string" (list can be collected from the lookup api)
+		"partnerId": "string", (Guid id of the partner) (optional)
+		"customerId": "string", (Guid of customer id) (required)
+		"businessName": 0, (business name) (optional)
+		"firstName": "string" (first name) (required),
+		"lastName": "string" (last name) (required),
+		"mobile": 0, (mobile number) (required)
+		"email": "string" (email) (required),
+		"ExtraInformation" : {} (optional)
 	}
 
 Once the Application is created, then you will need to add in Accounting and Banking information
@@ -199,29 +203,35 @@ Only when this is done will the application be submitted for review and approval
 
 Adding organisation details includes submitted the Application id with the following details
 
-
 	{
-		"businessName": "string", (the name of the business)
-		"entityType": "string", (the type of business, LLC, etc etc)
-		"zipCode": "string", (the zip code of the business)
-		"businessTaxId": "string", (the EIN of the business)
-		"city": "string" (the city the business is HQ)
+		"businessName": "string", (the name of the business) (required)
+		"entityType": "string", (the type of business, LLC, etc etc) (required)
+		"zipCode": "string", (the zip code of the business) (required)
+		"businessTaxId": "string", (the EIN of the business) (required)
+		"city": "string" (the city the business is HQ) (required)
 	} 
 
 ### Add Primary Applicant Details
 
-To add the Primary Applicant, you will need to submit both Driver License and SSN details
+To add the Primary Applicant, you will need to submit both Driver License and SSN details         
 
 	{
-		"ssn": "string",
+		"name": "string", (optional)
+		"email": "string", (required)
+		"mobile": "string",  (required)
+		"isPrimary": "string", (required)
+		"isManuallyAdded": "string", (required)
 		"driverLicense": {
-			"fullName": "string",
-			"address": "string",
-			"city": "string",
-			"dateOfBirth": "2022-07-15T05:48:04.972Z",
-			"licenseNumber": "string",
-			"state": "string"
-		}
+			"name": "string", (required)
+			"address": "string", (required)
+			"city": "string", (required)
+			"dateOfBirth": "2022-07-15T05:48:04.972Z", (required)
+			"cardNumber": "string", (required)
+			"issuingState": "string", (required)
+			"expiryDate": "string", (required)
+			"image": "string" (required)
+		},
+		"miscellaneousData": {} (optional)
 	}
 
 A Primary Applicant is required for an application to be completed.
@@ -231,15 +241,22 @@ A Primary Applicant is required for an application to be completed.
 To add the Secondary Applicant, you will need to submit both Driver License and SSN details
 
 	{
-		"ssn": "string",
+		"name": "string", (optional)
+		"email": "string", (required)
+		"mobile": "string",  (required)
+		"isPrimary": "string", (required)
+		"isManuallyAdded": "string", (required)
 		"driverLicense": {
-			"fullName": "string",
-			"address": "string",
-			"city": "string",
-			"dateOfBirth": "2022-07-15T05:48:04.972Z",
-			"licenseNumber": "string",
-			"state": "string"
-		}
+			"name": "string", (required)
+			"address": "string", (required)
+			"city": "string", (required)
+			"dateOfBirth": "2022-07-15T05:48:04.972Z", (required)
+			"cardNumber": "string", (required)
+			"issuingState": "string", (required)
+			"expiryDate": "string", (required)
+			"image": "string" (required)
+		},
+		"miscellaneousData": {} (optional)
 	}
 
 A Secondary Applicant is not required for an Application.
@@ -256,6 +273,24 @@ To select a Primary Account, you will need to pass in the Application Id and the
 
 
 	/api/ApplicationApproval/set-primary-bank/{applicationId}
+
+	post below bank data
+	
+	{
+	  "selected": true, (required)
+	  "name": "string", (required)
+	  "accountNumber": "string", (required)
+	  "id": "string", (required)
+	  "bsb": "string", (required)
+	  "balance": "string", (required)
+	  "available": "string", (required)
+	  "accountHolder": "string", (required)
+	  "accountType": "string", (required)
+	  "slug": "string", (required)
+	  "enabled": true, (required)
+	  "archived": true, (required)
+	  "accountId": "string" (required)
+	}
 
 
 ### Sign Contract
@@ -291,6 +326,14 @@ You will then collect the electronic signature from the customer for condition 1
 		/api/ApplicationApproval/sign-contract/{applicationId}
 
 Passing in the jpg of the signatures as a byte array.
+
+	{
+	  "ipAddress": "string", (required)
+	  "signature": "string", (required)
+	  "signature2": "string",(required)
+	  "mimeType": "string", (required)
+	  "secondaryApplicant": true (required)
+	}
 
 
 ### Supplied Required Documents
