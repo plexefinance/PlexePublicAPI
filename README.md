@@ -67,7 +67,7 @@ The required inputs are
 		"firstName": "string", (firstName) (required)
 		"lastName": "string", (lastName)  (required)
 		"password": "string", (at least 6 char, 1 Upper, 1 number and 1 special char) (required)
-		"number": "string" (cell phone number) (required)
+		"mobileNumber": "string" (cell phone number) (required)
 	}
 
 
@@ -81,10 +81,6 @@ To create an Appplication you will need to call the Create Application API, and 
 		"partnerId": "string", (Guid id of the partner) (optional)
 		"customerId": "string", (Guid of customer id) (required)
 		"businessName": 0, (business name) (optional)
-		"firstName": "string" (first name) (required),
-		"lastName": "string" (last name) (required),
-		"mobile": 0, (mobile number) (required)
-		"email": "string" (email) (required),
 		"ExtraInformation" : {} (optional)
 	}
 
@@ -219,8 +215,6 @@ To add the Primary Applicant, you will need to submit both Driver License and SS
 		"name": "string", (optional)
 		"email": "string", (required)
 		"mobile": "string",  (required)
-		"isPrimary": "string", (required)
-		"isManuallyAdded": "string", (required)
 		"driverLicense": {
 			"name": "string", (required)
 			"address": "string", (required)
@@ -229,7 +223,6 @@ To add the Primary Applicant, you will need to submit both Driver License and SS
 			"cardNumber": "string", (required)
 			"issuingState": "string", (required)
 			"expiryDate": "string", (required)
-			"image": "string" (required)
 		},
 		"miscellaneousData": {} (optional)
 	}
@@ -244,8 +237,6 @@ To add the Secondary Applicant, you will need to submit both Driver License and 
 		"name": "string", (optional)
 		"email": "string", (required)
 		"mobile": "string",  (required)
-		"isPrimary": "string", (required)
-		"isManuallyAdded": "string", (required)
 		"driverLicense": {
 			"name": "string", (required)
 			"address": "string", (required)
@@ -254,7 +245,6 @@ To add the Secondary Applicant, you will need to submit both Driver License and 
 			"cardNumber": "string", (required)
 			"issuingState": "string", (required)
 			"expiryDate": "string", (required)
-			"image": "string" (required)
 		},
 		"miscellaneousData": {} (optional)
 	}
