@@ -2,6 +2,9 @@
 {    
     public class ExtraInformation
     {
-        public string test { get; set; }
+        public string Years { get; set; }
+        public string Zipcode { get; set; }
+        public string Industry { get; set; }
+
     }
 }

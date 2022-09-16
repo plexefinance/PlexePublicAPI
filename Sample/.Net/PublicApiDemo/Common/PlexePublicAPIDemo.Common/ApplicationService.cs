@@ -10,7 +10,7 @@ namespace PlexePublicAPIDemo.Common
 {
     public class ApplicationService
     {
-        private readonly string BASE_URI = "https://apidemo.plexe.co/";
+        private readonly string BASE_URI = "https://apidemo.plexe.co/"; // "https://apidemo.plexe.co/";
         private readonly string APPLICATION_URI = "api/Application/";
 
         public ApplicationResponse GetApplicationById(string key, string applicationId)
@@ -70,49 +70,25 @@ namespace PlexePublicAPIDemo.Common
                 request.AddHeader("Accept", "application/json");
                 request.AddHeader("Authorization", "Bearer " + key + "");
 
-
-                CustomerAndApplication customerAndApplication = new CustomerAndApplication();
-                List<Acknowledgement> acknowledgements = new List<Acknowledgement>();
-                acknowledgements.Add(new Acknowledgement()
-                {
-                    AcknowledgementCode = "acknowledgementCode1",
-                    Acknowledged = true,
-                });
-                acknowledgements.Add(new Acknowledgement()
-                {
-                    AcknowledgementCode = "acknowledgementCode2",
-                    Acknowledged = true,
-                });
+                CustomerAndApplication customerAndApplication = new CustomerAndApplication();                
                 customerAndApplication.application = new Application()
                 {
-                    Abn = "",
-                    Acknowledgements = acknowledgements,
-                    AcnNumber = "",
-                    AcnType = "user",
-                    BusinessName = "test business 15",
-                    Email = "testcustomer15@plexe.com.au",
+                    BusinessName = "New Application 24105 Apiuser16092022-1 <TBA>, apiuser16092022-1@plexe.co.au, 8888888888, Sep 16, 2022",
                     ExtraInformation = new ExtraInformation()
                     {
-                        test = ""
+                        Years = "2-5 years",
+                        Zipcode = "82772", 
+                        Industry = "Rice"
                     },
-                    FirstName = "Simon",
-                    LastName = "test15",
-                    Mobile = "9999999999",
                     PartnerId = null,
-                    TradingName = "tradingName15"
                 };
                 customerAndApplication.customer = new Customer()
                 {
-                    Email = "testcustomer15@plexe.com.auit",
-                    FirstName = "test",
-                    LastName = "test",
+                    Email = "apiuser16092022-1@plexe.co.au",
+                    FirstName = "apiuser16092022-1",
+                    LastName = "lastname",
                     MobileNumber = "999999999",
-                    BusinessName = "test15",
-                    TradingName = "test15",
-                    Password = "DelightWAY12!@",
-                    Type = "user",
-                    DateOfBirth = new DateTime(1975, 3, 7, 15, 0, 0, 41),
-                    HasLoggedIn = true
+                    Password = "DelightWAY12!@"
                 };
 
                 var body = JsonConvert.SerializeObject(customerAndApplication);
@@ -145,38 +121,63 @@ namespace PlexePublicAPIDemo.Common
 
                 List<BankAccountRequest> bankAccountRequests = new List<BankAccountRequest>();
                 List<TransactionRequest> transactionRequests1 = new List<TransactionRequest>();
+                List<TransactionRequest> transactionRequests2 = new List<TransactionRequest>();
+
+
                 transactionRequests1.Add(new TransactionRequest()
                 {
-                    Amount = 34,
-                    Balance = 33,
-                    Catgeory = "category",
+                    Amount = 7363,
+                    Balance = 345,
                     Date = new DateTime(),
-                    Tags = new List<Tag>(),
-                    Text = "text",
-                    Type = "type",
+                    Text = "Transaction One",
+                    IsCredit = true,
                 });
                 transactionRequests1.Add(new TransactionRequest()
                 {
-                    Amount = 34,
-                    Balance = 33,
-                    Catgeory = "category",
+                    Amount = 4574,
+                    Balance = 345,
                     Date = new DateTime(),
-                    Tags = new List<Tag>(),
-                    Text = "text",
-                    Type = "type",
+                    Text = "Transaction Two",
+                    IsCredit = true,
+                });
+                transactionRequests2.Add(new TransactionRequest()
+                {
+                    Amount = 7363,
+                    Balance = 345,
+                    Date = new DateTime(),
+                    Text = "Transaction One",
+                    IsCredit = true,
+                });
+                transactionRequests2.Add(new TransactionRequest()
+                {
+                    Amount = 4574,
+                    Balance = 345,
+                    Date = new DateTime(),
+                    Text = "Transaction Two",
+                    IsCredit = true,
                 });
                 bankAccountRequests.Add(new BankAccountRequest()
                 {
-                    AvailableBalance = "23",
-                    CurrentBalance = "33",
-                    AccountNumber = "56456456456",
-                    Bsb = "bsb",
-                    AccountType = "AccountType",
-                    Bank = "Bank",
+                    AvailableBalance = "23333",
+                    CurrentBalance = "3455",
+                    AccountNumber = "82722892920",
+                    Routing = "827282",
+                    AccountType = "Current",
+                    Bank = "Bank One",
                     Transactions = transactionRequests1,
-                    AccountName = "AccountName",
-                    AccountHolder = "AccountHolder",
+                    AccountName = "Bank One Test"
+                });
 
+                bankAccountRequests.Add(new BankAccountRequest()
+                {
+                    AvailableBalance = "23333",
+                    CurrentBalance = "3455",
+                    AccountNumber = "82722892920",
+                    Routing = "827282",
+                    AccountType = "Current",
+                    Bank = "Bank Two",
+                    Transactions = transactionRequests2,
+                    AccountName = "Bank Two Test"
                 });
 
                 bankingDataRequest.BankAccounts = bankAccountRequests;
@@ -193,11 +194,11 @@ namespace PlexePublicAPIDemo.Common
                 return false;
             }
         }
-        public bool ProcessApplication(string key, string applicationId, string currentProcess)
+        public bool ProcessApplication(string key, string applicationId)
         {
             try
             {
-                var client = new RestClient(BASE_URI + APPLICATION_URI + "process-application/" + applicationId + "?currentProcess=" + currentProcess + "");
+                var client = new RestClient(BASE_URI + APPLICATION_URI + "process-application/" + applicationId);
                 var request = new RestRequest();
                 request.Method = Method.Get;
                 request.AddHeader("Accept", "application/json");
@@ -211,9 +212,8 @@ namespace PlexePublicAPIDemo.Common
                 return false;
             }
         }
-        public ApplicationStatusResponse ApplicationStatus(string key, string applicationId)
+        public string ApplicationStatus(string key, string applicationId)
         {
-            ApplicationStatusResponse applicationStatus = new ApplicationStatusResponse();
             try
             {
                 var client = new RestClient(BASE_URI + APPLICATION_URI + "application-status/" + applicationId + "");
@@ -223,8 +223,7 @@ namespace PlexePublicAPIDemo.Common
                 request.AddHeader("Authorization", "Bearer " + key + "");
                 RestResponse response = client.Execute(request);
                 Console.WriteLine(Environment.NewLine + response.Content);
-                applicationStatus = JsonConvert.DeserializeObject<ApplicationStatusResponse>(response.Content);
-                return applicationStatus;
+                return response.Content;
             }
             catch (Exception ex)
             {

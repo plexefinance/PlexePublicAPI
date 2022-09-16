@@ -11,7 +11,7 @@ namespace PlexePublicAPIDemo.Common.Model
         public double? Balance { get; set; }
         public DateTime? Date { get; set; }
         public string Text { get; set; }
-        public string Type { get; set; }
+        public bool IsCredit { get; set; }
         public List<Tag> Tags { get; set; }
         public string Catgeory { get; set; }
     }

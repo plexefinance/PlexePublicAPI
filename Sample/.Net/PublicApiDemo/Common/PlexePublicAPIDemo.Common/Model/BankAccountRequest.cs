@@ -6,7 +6,7 @@ namespace PlexePublicAPIDemo.Common.Model
         public string AvailableBalance { get; set; }
         public string CurrentBalance { get; set; }
         public string AccountNumber { get; set; }
-        public string Bsb { get; set; }
+        public string Routing { get; set; }
         public string AccountType { get; set; }
         public string Bank { get; set; }
         public string Id { get; set; }

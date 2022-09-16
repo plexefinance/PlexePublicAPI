@@ -33,6 +33,8 @@ namespace PlexePublicAPIDemo.ScenarioOne
             var applicationId = applicationAndCustomerCreateResponse.ApplicationId;
             var customerId = applicationAndCustomerCreateResponse.CustomerId;
 
+            Console.WriteLine("Application Id is : " + applicationId);
+            Console.WriteLine("Customer Id is : " + customerId);
             // STEP 3: AddOrUpdateBankingData
             Console.WriteLine("STEP 3: AddOrUpdateBankingData !!!!");
             AddOrUpdateBankingData(applicationService, key, applicationId);
@@ -42,11 +44,11 @@ namespace PlexePublicAPIDemo.ScenarioOne
             ProcessApplication(applicationService, key, applicationId);
 
             // STEP 5 : GetApplicationStatusOrRegisterWebhook
-            Console.WriteLine("STEP 5 : GetApplicationStatusOrRegisterWebhook !!!!");
+            Console.WriteLine("STEP 5: GetApplicationStatusOrRegisterWebhook !!!!");
             GetApplicationStatusOrRegisterWebhook(applicationService, webhookService, key, applicationId, customerId);
 
             // STEP 6 GetApplicationById
-            Console.WriteLine("STEP 6 GetApplicationById !!!!");
+            Console.WriteLine("STEP 6: GetApplicationById !!!!");
             ApplicationResponse applicationResponse = GetApplicationById(applicationService, key, applicationId);
 
             // STEP 7: GetApplicationOffer
@@ -111,9 +113,7 @@ namespace PlexePublicAPIDemo.ScenarioOne
         private static void ProcessApplication(ApplicationService applicationService, string key, string applicationId)
         {
             Console.WriteLine("APPLICATION READY TO PROCESS:");
-            Console.WriteLine("ENTER CURRENT PROCESS:");
-            var currentProcess = Console.ReadLine();
-            var currentProcessSuccesss = applicationService.ProcessApplication(key, applicationId, currentProcess);
+            var currentProcessSuccesss = applicationService.ProcessApplication(key, applicationId);
 
             if (!currentProcessSuccesss)
             {
@@ -152,7 +152,7 @@ namespace PlexePublicAPIDemo.ScenarioOne
                 }
                 Console.WriteLine("APPLICATION STATUS BELOW:");
                 Console.WriteLine(Environment.NewLine);
-                Console.WriteLine(JsonConvert.SerializeObject(applicationStatus));
+                Console.WriteLine(applicationStatus);
             }
             else if (selectedOption == "2")
             {
@@ -187,6 +187,10 @@ namespace PlexePublicAPIDemo.ScenarioOne
                 }
                 Console.WriteLine("FETCHING APPLICATION OFFER SUCCESSFUL!!!");
                 Console.WriteLine(Environment.NewLine + JsonConvert.SerializeObject(applicationOffer));
+            }
+            else {
+                Console.WriteLine("APPLICATION OFFER IS NOT READY!!!");
+                Environment.Exit(0);
             }
         }
     }
