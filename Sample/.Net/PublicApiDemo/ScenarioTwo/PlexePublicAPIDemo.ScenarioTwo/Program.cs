@@ -35,7 +35,7 @@ namespace PlexePublicAPIDemo.ScenarioTwo
 
             // Step 4: GetAllBanks
             Console.WriteLine("Step 4: GetAllBanks !!!!");
-            GetAllBanks(applicationApprovalService, key);
+            GetAllBanks(applicationApprovalService, key, applicationId);
 
             // Step 5: SetPrimaryBankAccount
             Console.WriteLine("Step 5: SetPrimaryBankAccount !!!!");
@@ -45,17 +45,21 @@ namespace PlexePublicAPIDemo.ScenarioTwo
             Console.WriteLine("Step 6: GetContracts !!!!");
             GetContracts(applicationApprovalService, key, applicationId);
 
+            // Step 7: GetContractDetails
+            Console.WriteLine("Step 6: GetContractDetails !!!!");
+            GetContractDetails(applicationApprovalService, key, applicationId);
+
             var applicantId = LoadApplicantId();
 
-            // Step 7: SignContracts
+            // Step 8: SignContracts
             Console.WriteLine("Step 7: SignContracts !!!!");
             SignContracts(applicationApprovalService, key, applicationId, applicantId);
 
-            // Step 8: GetRequiredDocuments
+            // Step 9: GetRequiredDocuments
             Console.WriteLine("Step 8: GetRequiredDocuments !!!!");
             GetRequiredDocuments(applicationApprovalService, key, applicationId);
 
-            // Step 9: SubmitRequiredDocuments
+            // Step 10: SubmitRequiredDocuments
             Console.WriteLine("Step 9: SubmitRequiredDocuments !!!!");
             SubmitRequiredDocuments(applicationApprovalService, key, applicationId);
 
@@ -124,10 +128,10 @@ namespace PlexePublicAPIDemo.ScenarioTwo
             }
             Console.WriteLine("ADD-PRIMARY - APPLICANT - DETAILS ADDED SUCCESSFULLY!!!");
         }
-        private static void GetAllBanks(ApplicationApprovalService applicationApprovalService, string key)
+        private static void GetAllBanks(ApplicationApprovalService applicationApprovalService, string key,string applicationId)
         {
             Console.WriteLine("CALL GET-ALL - BANKS API.THIS WILL RETURN ALL BANKS TO THE PRIMARY CAN BE SELECTED !!!");
-            var allBanks = applicationApprovalService.GetAllBanks(key);
+            var allBanks = applicationApprovalService.GetAllBanks(key,applicationId);
             if (!(allBanks != null && allBanks.Count > 0))
             {
                 Console.WriteLine("ERROR IN GET-ALL - BANKS!!!");
@@ -158,9 +162,23 @@ namespace PlexePublicAPIDemo.ScenarioTwo
                 Console.WriteLine("ERROR IN GET-CONTRACTS!!!");
                 Environment.Exit(0);
             }
-            Console.WriteLine("GET-CONTRACTS - BANK SUCCESSFULLY!!!");
+            Console.WriteLine("GET-CONTRACTS SUCCESSFULLY!!!");
             Console.WriteLine("BELOW IS CONTRACTS FETCHED:");
             Console.WriteLine(JsonConvert.SerializeObject(contracts));
+        }
+
+        private static void GetContractDetails(ApplicationApprovalService applicationApprovalService, string key, string applicationId)
+        {
+            Console.WriteLine("CALL GET-CONTRACT-DETAILS TO GET THE CONTRACT DETAILS THAT MUST BE DISPLAYED TO THE CUSTOMER !!!");
+            var contractDetails = applicationApprovalService.GetContractDetails(key, applicationId);
+            if (!(contractDetails != null))
+            {
+                Console.WriteLine("ERROR IN GET-CONTRACT-DETAILS!!!");
+                Environment.Exit(0);
+            }
+            Console.WriteLine("GET-CONTRACT-DETAILS SUCCESSFULLY!!!");
+            Console.WriteLine("BELOW IS GET-CONTRACT-DETAILS FETCHED:");
+            Console.WriteLine(JsonConvert.SerializeObject(contractDetails));
         }
         private static UserData Login()
         {
