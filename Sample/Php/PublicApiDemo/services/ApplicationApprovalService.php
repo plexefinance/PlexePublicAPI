@@ -83,28 +83,24 @@ class ApplicationApprovalService
                 'Authorization' => 'Bearer '. $key
             ];
             $body = '{
-                "isManuallyAdded": true,
-                "name": "simon",
-                "driversLicense": {
-                    "issuingState": "state",
-                    "cardNumber": "92883783838",
-                    "expiryDate": "2007-07-02T22:00:28.342Z",
-                    "name": "simon",
-                    "address": "address",
-                    "dateOfBirth": "2002-05-08T12:32:42.422Z",
-                    "image": "",
-                    "city": "city"
-                },
-                "isPrimary": true,
-                "email": "simon@cuce.co.au",
-                "mobile": "9999999999",
-                "applicationId": "applicationId",
-                "miscellaneousData": {
-                    "Ute1": "",
-                    "est5d": "",
-                    "pariatur_2": ""
-                }
+              "name": "primary-applicant-17092022-3",
+              "driversLicense": {
+                "issuingState": "navada",
+                "cardNumber": "922772829",
+                "expiryDate": "1946-01-06T16:12:26.068Z",
+                "name": "primary-applicant-17092022-3",
+                "address": "street elm road 22",
+                "dateOfBirth": "1951-05-24T16:44:32.648Z",
+                "city": "ohio"
+              },
+              "email": "primary-applicant-17092022-3@plexe.co.au",
+              "mobile": "8888888888",
+              "miscellaneousData": {
+                "ssn": "82828299292"
+              }
             }';
+
+            
             $request = new Request('POST', $this -> BASE_URI.$this -> APPLICATION_URI.'add-primary-applicant-details/' . $applicationId, $headers, $body);
             $res = $client->sendAsync($request)->wait();
             $result = $res -> getBody();
@@ -116,7 +112,7 @@ class ApplicationApprovalService
             return 'BAD_REQUEST';
         }
     }
-    public function GetAllBanks($key)
+    public function GetAllBanks($key,$applicationId)
     {
         try
         {            
@@ -125,7 +121,7 @@ class ApplicationApprovalService
               'Accept' => 'application/json',
               'Authorization' => 'Bearer '. $key
             ];
-            $request = new Request('GET', $this -> BASE_URI.$this -> APPLICATION_URI.'get-all-banks', $headers);
+            $request = new Request('GET', $this -> BASE_URI.$this -> APPLICATION_URI.'get-all-banks/'.$applicationId, $headers);
             $res = $client->sendAsync($request)->wait();
             $result = $res->getBody();
             $decoded = json_decode($result);
@@ -182,6 +178,27 @@ class ApplicationApprovalService
               'Authorization' => 'Bearer '. $key
             ];
             $request = new Request('GET', $this -> BASE_URI.$this -> APPLICATION_URI.'get-contracts/' . $applicationId, $headers);
+            $res = $client->sendAsync($request)->wait();
+            $result = $res->getBody();
+            $decoded = json_decode($result);
+            return $decoded;
+        }
+        catch (RequestException $e)
+        {
+            return 'BAD_REQUEST';
+        }
+    }
+
+    public function GetContractDetails($key, $applicationId)
+    {
+        try
+        {
+            $client = new Client();
+            $headers = [
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer '. $key
+            ];
+            $request = new Request('GET', $this -> BASE_URI.$this -> APPLICATION_URI.'get-contract-details/' . $applicationId, $headers);
             $res = $client->sendAsync($request)->wait();
             $result = $res->getBody();
             $decoded = json_decode($result);

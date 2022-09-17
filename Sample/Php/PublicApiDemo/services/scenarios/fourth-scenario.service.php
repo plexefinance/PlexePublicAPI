@@ -1,8 +1,8 @@
 <?php
 
 include('services/service.php');
-include('CalculationService.php');
-include('LoanService.php');
+include('services/CalculationService.php');
+include('services/LoanService.php');
 
 class FourthScenarioService {
 
@@ -23,7 +23,6 @@ class FourthScenarioService {
         }
         
         $appService -> writeMessage("APPLICATION-LOC - CALCULATION - SLIDER FETCHED SUCCESSFULLY!!!");
-        //Console.WriteLine(JsonConvert.SerializeObject(calculateLOCSliderResponse));
     }
 
     public function ApplicationLocCalculation($key, $applicationId)
@@ -41,7 +40,6 @@ class FourthScenarioService {
         }
 
         $appService -> writeMessage("APPLICATION-LOC - CALCULATION FETCHED SUCCESSFULLY!!!");
-        //Console.WriteLine(JsonConvert.SerializeObject(applicationLocCalculationResponse));
     }
 
     //pass loan ID
@@ -60,7 +58,6 @@ class FourthScenarioService {
         }
 
         $appService -> writeMessage("MAKE-WITHDRAWAL-LINE-OF-CREDIT FETCHED SUCCESSFULLY!!!");
-        //Console.WriteLine(JsonConvert.SerializeObject(makeWithdrawalLineOfCreditResponse));
     }
 
     public function ResendWithdrawalOtp($key, $loanId)
@@ -78,7 +75,6 @@ class FourthScenarioService {
         }
 
         $appService -> writeMessage("RESEND-WITHDRAWAL-OTP FETCHED SUCCESSFULLY!!!");
-        //Console.WriteLine(JsonConvert.SerializeObject(otp));
         $appService -> writeMessage("OTP IS:".$otp);
         
         return $otp;

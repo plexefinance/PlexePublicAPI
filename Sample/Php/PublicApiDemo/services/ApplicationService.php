@@ -84,40 +84,19 @@ class ApplicationService
             ];
             $body = '{
                 "application": {
-                    "acnNumber" : "",
-                    "acnType ": "user",
-                    "firstName": "Simon",
-                    "lastName": "test15",
-                    "mobile": "9999999999",
-                    "email": "testcustomer15@plexe.com.au",
-                    "businessName": "test business 15",
-                    "tradingName": "tradingName15",
-                    "partnerId": null,
+                    "businessName": "New Application 24105 Apiuser17092022-1 <TBA>, apiuser17092022-1@plexe.co.au, 8888888888, Sep 17, 2022",
+                    "customerId": "",
+                    "partnerId": "",
                     "extraInformation": {
-                        test : ""
-                    },
-                    acknowledgements : [
-                        {
-                            acknowledgementCode : "acknowledgementCode1",
-                            acknowledged : true,
-                        },
-                        {
-                            acknowledgementCode : "acknowledgementCode2",
-                            acknowledged : true,
-                    }]
+                    "years": "2-5 years", "zipcode": "82772", "industry": "Rice"
+                    }
                 },
                 "customer": {
-                    "email": "testcustomer15@plexe.com.auit",
-                    "firstName": "test",
-                    "lastName": "test",
-                    "mobileNumber": "9999999999",
-                    "businessName": "test15",
-                    "tradingName": "test15",
-                    "password": "DelightWAY12!@",
-                    "type": "user",
-                    "parentId": null,
-                    "dateOfBirth": "1971-11-18T07:26:53.873Z",
-                    "hasLoggedIn": true
+                    "email": "apiuser17092022-1@plexe.co.au", 
+	                "firstName": "Apiuser17092022-1", 
+	                "lastName": "<TBA>",
+	                "mobileNumber": "8888888888",
+	                "password": "DelightWAY12!@"
                 }
             }';                   
             
@@ -170,53 +149,58 @@ class ApplicationService
                 'Authorization' => 'Bearer '.$key
             ];
             $body = '{
-                "bankAccounts": [
-                {
-                    "availableBalance": "23",
-                    "currentBalance": "33",
-                    "accountNumber": "voluptate ea",
-                    "bsb": "bsb",
-                    "accountType": "AccountType",
-                    "bank": "exercitation of",
-                    "id": "dolor dolore",
-                    "transactions": [
+                  "bankAccounts": [
                     {
-                        "amount": 23,
-                        "balance": 22,
-                        "date": "1964-07-30T19:09:15.450Z",
-                        "text": "text",
-                        "type": "type",
-                        "tags": [
+                      "bank": "Bank One",
+                      "availableBalance": "23333",
+                      "accountNumber": "82722892920",
+                      "routing": "827282",
+                      "accountName": "Bank One Test",
+                      "currentBalance": "3455",
+                      "accountType": "Current",
+                      "transactions": [
                         {
-                            "value": ""
+                          "amount": 34,
+                          "date": "1962-03-15T21:07:50.047Z",
+                          "text": "Transaction One",
+                          "isCredit": true,
+                          "balance": 345
                         },
                         {
-                            "value": ""
+                          "amount": 23,
+                          "date": "2020-08-03T08:07:00.597Z",
+                          "text": "Transaction Two",
+                          "isCredit": true,
+                          "balance": 356
                         }
-                        ],
-                        "catgeory": "category"
+                      ]
                     },
                     {
-                        "amount": 35,
-                        "balance": 67,
-                        "date": "1973-02-03T14:40:03.128Z",
-                        "text": "text",
-                        "type": "type",
-                        "tags": [
+                      "bank": "Bank Two",
+                      "availableBalance": "34553",
+                      "accountNumber": "9774789329",
+                      "routing": "983738",
+                      "accountName": "Bank Two Test",
+                      "currentBalance": "8373",
+                      "accountType": "Current",
+                      "transactions": [
                         {
-                            "value": ""
+                          "amount": 34,
+                          "date": "1962-03-15T21:07:50.047Z",
+                          "text": "Transaction One",
+                          "isCredit": true,
+                          "balance": 234
                         },
                         {
-                            "value": ""
+                          "amount": 67,
+                          "date": "2020-08-03T08:07:00.597Z",
+                          "text": "Transaction Two",
+                          "isCredit": true,
+                          "balance": 456
                         }
-                        ],
-                        "catgeory": "category"
+                      ]
                     }
-                    ],
-                    "accountName": "AccountName",
-                    "accountHolder": "AccountHolder"
-                }
-                ]
+                  ]
             }';
             $request = new Request('POST', $this->BASE_URI.$this->APPLICATION_URI.'add-or-update-banking-data/'.$applicationId.'?bankName='.$bankName, $headers, $body);
             $res = $client->sendAsync($request)->wait();
@@ -230,7 +214,7 @@ class ApplicationService
         }
     }
 
-    public function ProcessApplication($key, $applicationId, $currentProcess)
+    public function ProcessApplication($key, $applicationId)
     {
         try
         {
@@ -239,7 +223,7 @@ class ApplicationService
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$key
             ];
-            $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'process-application/'.$applicationId.'?currentProcess='.$currentProcess, $headers);
+            $request = new Request('GET', $this->BASE_URI.$this->APPLICATION_URI.'process-application/'.$applicationId, $headers);
             $res = $client->sendAsync($request)->wait();
             $result = $res->getBody();
             $decoded = json_decode($result);

@@ -46,7 +46,7 @@
           </div>
           <div class="col-md-9" style="border: 2px solid lightblue;overflow:auto; max-height:800px;">
             <?php
-            include('./services/scenarios/first-scenario.service.php');
+            include('./services/scenarios/second-scenario.service.php');
             if (isset($_POST['button1'])) {
               
               if (!isset($_POST['username'])) {
@@ -92,7 +92,7 @@
                 
                 // STEP 4: Get All Banks
                 $appService -> writeMessage("<b>STEP 4: Get All Banks!!!</b>");
-                $secondScenarioService -> GetAllBanks($key);
+                $secondScenarioService -> GetAllBanks($key, $applicationId);
 
                 // STEP 5: Set Primary Bank Account
                 $appService -> writeMessage("<b>STEP 5: Set Primary Bank Account!!!</b>");
@@ -101,17 +101,21 @@
                 // STEP 6: Get Contracts
                 $appService -> writeMessage("<b>STEP 6: Get Contracts!!!</b>");
                 $secondScenarioService -> GetContracts($key, $applicationId);
+
+                // STEP 6: Get Contract Details
+                $appService -> writeMessage("<b>STEP 7: Get Contract Details!!!</b>");
+                $secondScenarioService -> GetContractDetails($key, $applicationId);
                 
                 // STEP 7: Sign Contracts
-                $appService -> writeMessage("<b>STEP 7: Sign Contracts!!!</b>");
+                $appService -> writeMessage("<b>STEP 8: Sign Contracts!!!</b>");
                 $secondScenarioService -> SignContracts($key, $applicationId, $applicantId);
 
                 // STEP 8: Get Required Documents
-                $appService -> writeMessage("<b>STEP 8: Get Required Documents!!!</b>");
+                $appService -> writeMessage("<b>STEP 9: Get Required Documents!!!</b>");
                 $secondScenarioService -> GetRequiredDocuments($key, $applicationId);
 
                 // STEP 9: Submit Required Documents
-                $appService -> writeMessage("<b>STEP 9: Submit Required Documents!!!</b>");
+                $appService -> writeMessage("<b>STEP 10: Submit Required Documents!!!</b>");
                 $secondScenarioService -> SubmitRequiredDocuments($key, $applicationId);
               }
             }

@@ -41,21 +41,13 @@ class FirstScenarioService {
         $appService -> writeMessage("ADDING OR UPDATING BANK DATA SUCCESSFULL !!!");
     }
 
-    public function ProcessApplication($key, $applicationId, $currentProcess){
+    public function ProcessApplication($key, $applicationId){
         $applicationService = new ApplicationService();        
         $appService = new AppService();
 
         $appService -> writeMessage("APPLICATION READY TO PROCESS:");
-
-        $appService -> writeMessage("ENTER CURRENT PROCESS:");
         
-        if($currentProcess == "")
-        {
-            $currentProcess = "1";
-        }
-        $appService -> writeMessage("CURRENT PROCESS IS:".$currentProcess."");
-        
-        $currentProcessSuccesss = $applicationService -> ProcessApplication($key, $applicationId, $currentProcess);
+        $currentProcessSuccesss = $applicationService -> ProcessApplication($key, $applicationId);
         if ($currentProcessSuccesss == 'BAD_REQUEST')
         {   
             $appService -> writeErrorMessage("ERROR PROCESSING APPLICATION !!!");

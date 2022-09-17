@@ -68,9 +68,6 @@
               if (!isset($_POST['bankName'])) {
                 $appService -> writeErrorMessage("BANKNAME IS REQUIRED!!!");
               }
-              if (!isset($_POST['currentProcess'])) {
-                $appService -> writeErrorMessage("CURRENTPROCESS IS REQUIRED!!!");
-              }
               if (!isset($_POST['selectedOption'])) {
                 $appService -> writeErrorMessage("SELECTEDOPTION IS REQUIRED!!!");
               }
@@ -78,14 +75,12 @@
               if (isset($_POST['username']) 
               && isset($_POST['password'])
               && isset($_POST['bankName'])
-              && isset($_POST['currentProcess'])
               && isset($_POST['selectedOption'])
               ) {
 
                 $apiUsername = $_POST['username'];
                 $apiPassword = $_POST['password'];
                 $bankName = $_POST['bankName'];
-                $currentProcess = $_POST['currentProcess'];
                 $selectedOption = $_POST['selectedOption'];
 
                 $appService -> writeMessage("USERNAME IS: ".$apiUsername."");
@@ -97,7 +92,7 @@
 
                 // STEP 2: CreateCustomerAndApplication
                 $appService -> writeMessage("<b>STEP 2: CREATE CUSTOMER AND APPLICATION!!!</b>");
-                $applicationAndCustomerCreateResponse = $firstScenarioService -> CreateCustomerAndApplication($key);
+                //$applicationAndCustomerCreateResponse = $firstScenarioService -> CreateCustomerAndApplication($key);
 
                 // Load application Id and customer Id
                 $applicationId = $applicationAndCustomerCreateResponse -> applicationId;
@@ -112,7 +107,7 @@
 
                 // STEP 4: ProcessApplication  
                 $appService -> writeMessage("<b>STEP 4: ProcessApplication !!!</b>");  
-                $firstScenarioService -> ProcessApplication($key, $applicationId, $currentProcess);
+                $firstScenarioService -> ProcessApplication($key, $applicationId);
 
                 // STEP 5 : Get application status or register webhook
                 $appService -> writeMessage("<b>STEP 5: GET APPLICATION STATUS OR REGISTER WEBHOOK !!!</b>");  

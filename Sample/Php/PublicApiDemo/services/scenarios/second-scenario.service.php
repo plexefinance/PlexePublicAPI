@@ -1,7 +1,7 @@
 <?php
 
 include('services/service.php');
-include('ApplicationApprovalService.php');
+include('services/ApplicationApprovalService.php');
 
 class SecondScenarioService {
 
@@ -97,14 +97,14 @@ class SecondScenarioService {
         
         $appService -> writeMessage("ADD-PRIMARY - APPLICANT - DETAILS ADDED SUCCESSFULLY!!!");
     }
-    public function GetAllBanks($key)
+    public function GetAllBanks($key, $applicationId)
     {
         $applicationApprovalService = new ApplicationApprovalService();
         $appService = new AppService();
 
         $appService -> writeMessage("CALL GET-ALL - BANKS API.THIS WILL RETURN ALL BANKS TO THE PRIMARY CAN BE SELECTED !!!");
         
-        $allBanks = $applicationApprovalService-> GetAllBanks($key);
+        $allBanks = $applicationApprovalService-> GetAllBanks($key, $applicationId);
         
         if ($allBanks == 'BAD_REQUEST')
         {
@@ -114,6 +114,8 @@ class SecondScenarioService {
         $appService -> writeMessage("GET-ALL - BANKS SUCCESSFULLY!!!");
         
         $appService -> writeMessage("BELOW IS BANKS FETCHED:");        
+
+        print_r($allBanks);
     }
     public function SetPrimaryBankAccount($key, $applicationId)
     {
@@ -152,6 +154,32 @@ class SecondScenarioService {
         }
         
         $appService -> writeMessage("GET-CONTRACTS SUCCESSFULLY!!!");
+
+        print_r($contracts);
+    }
+
+    public function GetContractDetails($key, $applicationId)
+    {
+        $applicationApprovalService = new ApplicationApprovalService();
+        $appService = new AppService();
+
+        $appService -> writeMessage("CALL GET-CONTRACT DETAILS TO GET THE CONTRACT DETAILS THAT MUST BE DISPLAYED TO THE CUSTOMER !!!");
+        
+        $contractDetails = $applicationApprovalService -> GetContractDetails($key, $applicationId);
+        
+        if ($contractDetails == 'BAD_REQUEST')
+        {
+            $appService -> writeErrorMessage("ERROR IN GET-CONTRACT DETAILS!!!");
+        }
+        
+        if (!($contractDetails != null))       
+        {
+            $appService -> writeErrorMessage("ERROR IN GET-CONTRACT DETAILS!!!");           
+        }
+        
+        $appService -> writeMessage("GET-CONTRACT DETAILS SUCCESSFULLY!!!");
+
+        print_r($contractDetails);
     }
 }
  $secondScenarioService = new SecondScenarioService();
