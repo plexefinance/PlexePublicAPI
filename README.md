@@ -419,17 +419,37 @@ This will return a list of Ids, matched to the Application.
 
 We provide several webhooks as notification for the following events
 
-| Webhook     | Description |
-| ----------- | ----------- |
-| Customer Created for Partner      | This is a notification that a new customer has been created only for registered partners        |
-| Application Created for Partner      | This is a notification that a new application has been created only for registered partners        |
-| Customer and Application Created for Partner      | This is a notification that a new customer and application has been created only for registered partners        |
-| Application Processed      | This is a notification that a new application has been processed for a partner        |
-| Application Status Changed     | This is a notification that an application's status has changed only for registered partners        |
-| Application Approval Status Changed     | This is a notification that an application's approval status has changed only for registered partners        |
-| Loan Created     | This is a notification that an application has been converted into a loan        |
-| Loan Withdrawal Completed     | This is a notification that withdrawal has completed      |
-| New Message Posted     | This is a notification that a new message has been posted for a customer, application or loan        |
+| Name | Webhook     | Description |
+| ----------- | ----------- | ----------- |
+| WB_Customer_Created | Customer Created for Partner      | This is a notification that a new customer has been created only for registered partners        |
+| WB_Application_Created | Application Created for Partner      | This is a notification that a new application has been created only for registered partners        |
+| WB_Customer_And_Application_Created | Customer and Application Created for Partner      | This is a notification that a new customer and application has been created only for registered partners        |
+| WB_Application_Current_Process | Application Processed      | This is a notification that a new application has been processed for a partner        |
+| WB_Application_Status_Changed | Application Status Changed     | This is a notification that an application's status has changed only for registered partners        |
+| | Application Approval Status Changed     | This is a notification that an application's approval status has changed only for registered partners        |
+| WB_Loan_Created | Loan Created     | This is a notification that an application has been converted into a loan        |
+| WB_Loan_Withdrawal_Completed | Loan Withdrawal Completed     | This is a notification that withdrawal has completed      |
+| WB_Communication_Sent | New Message Posted     | This is a notification that a new message has been posted for a customer, application or loan        |
+| WB_Send_Secondary_Applicant_Notice | Message For Secondary Applicant | This is a notification that a message has been posted for secondary applicant.        |
+| WB_Send_Secondary_Applicant_Change_Of_Facility | Message For Facility Change | This is a notification posted for secondary applicant that a change in facility occurred        |
+| WB_Send_Applicant_Change_Of_Facility_Notice | Message For Facility Change     | This is a notification posted for applicant that a change in facility occurred        |
+| WB_Under_Review | Message For Under Review Application Status | This is a notification that a application status changed to under review. |
+| WB_Send_Partner_Link | Message For Partner Link | This is a notification that a partner link has been sent. |
+| WB_Application_Second_Day_Draft | Message For Application Second Day Draft | This is a notification to sent for application second day draft. |
+| WB_Send_Sms | Message For SMS | This is a notification that a sms has been sent.        |
+| WB_Send_Otp | Message For OTP | This is a notification that a OTP has been sent.       |
+| WB_Send_Loan_Otp | Message For Loan OTP | This is a notification that a Loan OTP has been sent.        |
+| WB_Application_Cancelled | Message For Cancelled Application Status     | This is a notification that a new message has been posted for a customer, application or loan        |
+| WB_Send_Two_Factor_Code | Message For Two factor code | This is a notification that a two factor code has been sent.        |
+| WB_Accounting_System_Failed_To_Connect | Message for Accounting System Failed Connection     | This is a notification that a accounting system failed to connect. |
+| WB_Accounting_Process_Failed | Message for Accounting Process Failed     | This is a notification that accounting process failed       |
+| WB_Accounting_Process_Connected | Message for Accounting Process Connected      | This is a notification that accounting process connected        |
+| WB_Send_Application_Ready | Message for send application ready     | This is a notification that a application is ready. |
+| WB_Send_Application_Otp | Message for application otp     | This is a notification that a otp sent for application.       |
+| WB_Application_First_Day_Draft | Message for application first day draft     | This is a notification for a application first day draft.        |
+| WB_Application_Ready | Message for application ready     | This is a notification that a application is ready        |
+
+
 
 ## Getting Help
 
