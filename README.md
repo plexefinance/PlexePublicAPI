@@ -419,7 +419,11 @@ This will return a list of Ids, matched to the Application.
 
 ### Get registered webhooks by partner Id or customer Id
 
-We provide api -> /api/Webhook/get-registered-webhooks pass in partner id or customer id as params.
+We provide api 
+
+		/api/Webhook/get-registered-webhooks 
+
+pass in partner id or customer id as params.
 
 this api returns list of webhooks registered by partner or customer.
 
