@@ -189,9 +189,10 @@ When an application is ready to be completed, it requires a number data collecti
 1. Add Organisation Details
 2. Add Primary Applicant Details
 3. Add Secondary Applicant Details (not mandatory)
-4. Set Primary Bank Account
-5. Sign Contract
-6. Supplied Required Documents
+4. Get Primary Bank Account
+5. Set Primary Bank Account
+6. Sign Contract
+7. Supplied Required Documents
 
 Only when this is done will the application be submitted for review and approval.
 
@@ -250,6 +251,30 @@ To add the Secondary Applicant, you will need to submit both Driver License and 
 	}
 
 A Secondary Applicant is not required for an Application.
+
+### Get Primary Bank Account
+
+To fetch a Primary Bank account, you will need to call below api for applicationId
+
+	/api/ApplicationApproval/get-primary-bank-account/{applicationId}
+
+This will return a primary Bank Account as below
+	
+	{
+	  "selected": true, 
+	  "name": "string", 
+	  "accountNumber": "string",
+	  "id": "string", 
+	  "bsb": "string", 
+	  "balance": "string",
+	  "available": "string",
+	  "accountHolder": "string",
+	  "accountType": "string",
+	  "slug": "string",
+	  "enabled": true, 
+	  "archived": true,
+	  "accountId": "string"
+	}
 
 ### Set Primary Bank Account
 
