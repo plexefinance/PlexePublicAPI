@@ -473,6 +473,7 @@ this api returns list of webhooks registered by partner or customer.
 | WB_Application_Second_Day_Draft | Message For Application Second Day Draft | This is a notification to sent for application second day draft. |
 | WB_Send_Sms | Message For SMS | This is a notification that a sms has been sent.        |
 | WB_Send_Otp | Message For OTP | This is a notification that a OTP has been sent.       |
+| WB_Loan_Enabled_Or_Disabled | Loan Enabled | This is a notification lets you kknow if a loan is enabled or not  |
 | WB_Send_Loan_Otp | Message For Loan OTP | This is a notification that a Loan OTP has been sent.        |
 | WB_Application_Cancelled | Message For Cancelled Application Status     | This is a notification that a new message has been posted for a customer, application or loan        |
 | WB_Send_Two_Factor_Code | Message For Two factor code | This is a notification that a two factor code has been sent.        |
