@@ -484,6 +484,10 @@ this api returns list of webhooks registered by partner or customer.
 | WB_Send_Application_Otp | Message for application otp     | This is a notification that a otp sent for application.       |
 | WB_Application_First_Day_Draft | Message for application first day draft     | This is a notification for a application first day draft.        |
 | WB_Application_Ready | Message for application ready     | This is a notification that a application is ready        |
+| WB_Customer_And_Application_Created | Message for customer with application created     | This is a notification that a customer and application created together |
+| WB_Application_Second_Day_Draft | Message for application second day draft ready     | This is a notification that a application second day draft is ready |
+| WB_Bank_Transactions_Refresh | Message for bank transaction refresh    | This is a notification that a bank transaction refreshed |
+| WB_Loan_Closed - missing | Message for loan closed successfully     | This is a notification that a loan closed successfully |
 
 
 
