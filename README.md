@@ -469,7 +469,6 @@ this api returns list of webhooks registered by partner or customer.
 | WB_Send_Secondary_Applicant_Change_Of_Facility | Message For Facility Change | This is a notification posted for secondary applicant that a change in facility occurred        |
 | WB_Send_Applicant_Change_Of_Facility_Notice | Message For Facility Change     | This is a notification posted for applicant that a change in facility occurred        |
 | WB_Under_Review | Message For Under Review Application Status | This is a notification that a application status changed to under review. |
-| WB_Send_Partner_Link | Message For Partner Link | This is a notification that a partner link has been sent. |
 | WB_Application_Second_Day_Draft | Message For Application Second Day Draft | This is a notification to sent for application second day draft. |
 | WB_Send_Sms | Message For SMS | This is a notification that a sms has been sent.        |
 | WB_Send_Otp | Message For OTP | This is a notification that a OTP has been sent.       |
@@ -487,9 +486,11 @@ this api returns list of webhooks registered by partner or customer.
 | WB_Customer_And_Application_Created | Message for customer with application created     | This is a notification that a customer and application created together |
 | WB_Application_Second_Day_Draft | Message for application second day draft ready     | This is a notification that a application second day draft is ready |
 | WB_Bank_Transactions_Refresh | Message for bank transaction refresh    | This is a notification that a bank transaction refreshed |
-| WB_Loan_Closed - missing | Message for loan closed successfully     | This is a notification that a loan closed successfully |
-
-
+| WB_Loan_Closed | Message for loan closed successfully     | This is a notification that a loan closed successfully |
+| WB_Partner_Request | Message for Partner Request | This is a notification that a partner request for an action |
+| WB_Offer_Updated | Message for Offer Updated | This is a notification that an offer has been updated |
+| WB_Loan_Opened | Message for Loan Opened successfully | This is a notification that a loan opened successfully |
+| WB_Draft_Application_Access | Message for Draft Application Access | This is a notification that a draft application url has been access |
 
 ## Getting Help
 
