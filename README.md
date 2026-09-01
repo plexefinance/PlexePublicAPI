@@ -442,6 +442,8 @@ This will return a list of Ids, matched to the Application.
 
 ## Webhooks
 
+For newly created applications, `extraInformation.years` is a string containing the completed years in business from `"0"` through `"99"`. Application-created webhooks therefore expose numeric strings such as `"7"`; existing applications may still contain the legacy bucket labels.
+
 ### Get registered webhooks by partner Id or customer Id
 
 We provide api 

@@ -88,7 +88,7 @@ class ApplicationService
                     "customerId": "",
                     "partnerId": "",
                     "extraInformation": {
-                    "years": "2-5 years", "zipcode": "82772", "industry": "Rice"
+                    "years": "7", "zipcode": "82772", "industry": "Rice"
                     }
                 },
                 "customer": {
